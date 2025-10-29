@@ -1,0 +1,206 @@
+`timescale 1ns / 1ps
+
+//==================================================================================//
+// TESTBENCH: tb_uart_aes_loopback
+// Kiểm tra toàn diện: RX → AES-CTR → TX
+// Tự sinh dữ liệu, tự kiểm tra kết quả
+//==================================================================================//
+module tb_uart_aes_loopback;
+
+    // =============================================================================
+    // PARAMETERS
+    // =============================================================================
+    localparam CLK_PERIOD = 20;        // 50 MHz
+    localparam BAUD_PERIOD = 8680;     // ~115200 baud tại 50 MHz (50M / 115200 ≈ 434 → x2 = 8680 ns)
+    localparam NUM_BLOCKS = 5;         // Gửi 5 block = 80 byte
+
+    // =============================================================================
+    // DUT SIGNALS
+    // =============================================================================
+    reg         clk;
+    reg         rst_n;
+    reg         rx;
+    reg [127:0] key;
+    reg [127:0] nonce;
+    wire        tx;
+
+    // =============================================================================
+    // DUT INSTANCE
+    // =============================================================================
+    uart_aes_loopback #(
+        .TX_FIFO_DEPTH(64)
+    ) dut (
+        .clk(clk),
+        .rst_n(rst_n),
+        .rx(rx),
+        .key(key),
+        .nonce(nonce),
+        .tx(tx)
+    );
+
+    // =============================================================================
+    // CLOCK GENERATION
+    // =============================================================================
+    always begin
+        #(CLK_PERIOD/2) clk = ~clk;
+    end
+
+    // =============================================================================
+    // UART RX/TX TASKS
+    // =============================================================================
+    task send_byte(input [7:0] data);
+        integer i;
+        begin
+            // Start bit
+            rx = 1'b0;
+            #(BAUD_PERIOD);
+
+            // Data bits (LSB first)
+            for (i = 0; i < 8; i = i + 1) begin
+                rx = data[i];
+                #(BAUD_PERIOD);
+            end
+
+            // Stop bit
+            rx = 1'b1;
+            #(BAUD_PERIOD);
+        end
+    endtask
+
+    task recv_byte(output [7:0] data);
+        integer i;
+        reg [9:0] frame;
+        begin
+            // Wait for start bit
+            @(negedge tx);
+            #(BAUD_PERIOD * 1.5);  // Sample tại giữa bit
+
+            // Read 8 data bits
+            for (i = 0; i < 8; i = i + 1) begin
+                #(BAUD_PERIOD);
+                frame[i] = tx;
+            end
+
+            // Stop bit
+            #(BAUD_PERIOD);
+            data = frame[7:0];
+        end
+    endtask
+
+    // =============================================================================
+    // TEST DATA
+    // =============================================================================
+    reg [127:0] plaintext_blocks [0:NUM_BLOCKS-1];
+    reg [127:0] expected_cipher_blocks [0:NUM_BLOCKS-1];
+    reg [7:0]   received_bytes [0:NUM_BLOCKS*16-1];
+    integer     byte_idx;
+
+    // Khởi tạo dữ liệu kiểm tra
+    initial begin
+        integer i, j;
+        for (i = 0; i < NUM_BLOCKS; i = i + 1) begin
+            plaintext_blocks[i] = $random;
+            // Ciphertext = plaintext XOR counter (giả lập AES-CTR đơn giản)
+            expected_cipher_blocks[i] = plaintext_blocks[i] ^ (128'h0000_0000_0000_0000_0000_0000_0000_0000 + i);
+        end
+    end
+
+    // =============================================================================
+    // MAIN TEST SEQUENCE
+    // =============================================================================
+    initial begin
+        // Khởi tạo
+        clk = 0;
+        rst_n = 0;
+        rx = 1;
+        key = 128'h0011_2233_4455_6677_8899_AABB_CCDD_EEFF;
+        nonce = 128'h1234_5678_90AB_CDEF_FEDC_BA09_8765_4321;
+
+        // Reset
+        #(CLK_PERIOD*10);
+        rst_n = 1;
+        #(CLK_PERIOD*10);
+
+        $display("=== BẮT ĐẦU GỬI %0d BLOCK (16 BYTE/BLOCK) ===", NUM_BLOCKS);
+
+        // Gửi từng block
+        for (int blk = 0; blk < NUM_BLOCKS; blk = blk + 1) begin
+            for (int b = 0; b < 16; b = b + 1) begin
+                send_byte(plaintext_blocks[blk][127 - 8*b -: 8]);
+            end
+            #(BAUD_PERIOD * 5);  // Khoảng cách giữa các block
+        end
+
+        // Chờ TX gửi hết
+        wait_for_tx_complete();
+        #(BAUD_PERIOD * 100);
+
+        $display("=== KIỂM TRA KẾT QUẢ ===");
+        check_results();
+
+        $display("=== HOÀN TẤT TESTBENCH ===");
+        $finish;
+    end
+
+    // =============================================================================
+    // NHẬN DỮ LIỆU TỪ TX
+    // =============================================================================
+    initial begin
+        byte_idx = 0;
+        forever begin
+            recv_byte(received_bytes[byte_idx]);
+            byte_idx = byte_idx + 1;
+            if (byte_idx >= NUM_BLOCKS*16) begin
+                disable recv_loop;
+            end
+        end
+    end : recv_loop
+
+    // =============================================================================
+    // CHỜ TX GỬI HẾT
+    // =============================================================================
+    task wait_for_tx_complete();
+        begin
+            while (byte_idx < NUM_BLOCKS*16) begin
+                #(BAUD_PERIOD * 10);
+            end
+        end
+    endtask
+
+    // =============================================================================
+    // KIỂM TRA KẾT QUẢ
+    // =============================================================================
+    task check_results();
+        integer blk, b;
+        reg [127:0] received_block;
+        reg pass;
+        begin
+            pass = 1;
+            for (blk = 0; blk < NUM_BLOCKS; blk = blk + 1) begin
+                received_block = 0;
+                for (b = 0; b < 16; b = b + 1) begin
+                    received_block = {received_block[119:0], received_bytes[blk*16 + b]};
+                end
+
+                if (received_block !== expected_cipher_blocks[blk]) begin
+                    $error("BLOCK %0d: NHẬN = %h, KỲ VỌNG = %h", blk, received_block, expected_cipher_blocks[blk]);
+                    pass = 0;
+                end else begin
+                    $display("BLOCK %0d: PASS", blk);
+                end
+            end
+
+            if (pass) $display(">>> TẤT CẢ %0d BLOCK ĐÚNG!", NUM_BLOCKS);
+            else      $display(">>> CÓ LỖI!");
+        end
+    endtask
+
+    // =============================================================================
+    // MONITOR (TÙY CHỌN)
+    // =============================================================================
+    initial begin
+        $monitor("Time=%0t | rx_valid=%b | aes_enable=%b | aes_valid_out=%b | tx_trigger=%b | tx_count=%0d",
+                 $time, dut.uart_rx_inst.valid, dut.aes_enable, dut.aes_valid_out, dut.tx_trigger, dut.tx_count);
+    end
+
+endmodule

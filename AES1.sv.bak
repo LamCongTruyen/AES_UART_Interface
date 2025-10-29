@@ -1,0 +1,14 @@
+module AES1 (
+    input  logic [127:0] plaintext,
+    input  logic [127:0] key,
+    output logic [127:0] cypher
+);
+
+  // Gọi module con: initial_transform
+  initial_transform u1 (
+    .text      (plaintext),
+    .key       (key),
+    .outmatrix (cypher)
+  );
+
+endmodule

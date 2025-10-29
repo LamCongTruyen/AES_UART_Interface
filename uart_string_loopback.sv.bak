@@ -1,0 +1,81 @@
+module uart_string_loopback #(
+    parameter int BUFFER_SIZE = 256,  // kích thước buffer 
+    parameter int DATA_WIDTH  = 8     // độ rộng dữ liệu
+)(
+    input  logic clk,
+    input  logic rst_n,
+    input  logic rx,
+    output logic tx
+);
+	
+    // --- Internal signals
+    logic [DATA_WIDTH-1:0] buffer [0:BUFFER_SIZE-1]; // buffer
+    logic [$clog2(BUFFER_SIZE)-1:0] write_ptr;       // Con trỏ ghi
+    logic [$clog2(BUFFER_SIZE)-1:0] read_ptr;        // Con trỏ đọc
+    logic [DATA_WIDTH-1:0] rx_data;                  // Dữ liệu nhận từ RX
+    logic                  rx_valid;                 // Tín hiệu valid từ RX
+    logic [DATA_WIDTH-1:0] tx_data;                  // Dữ liệu gửi đến TX
+    logic                  trigger;                  // Tín hiệu trigger cho TX
+    logic                  tx_busy;                  // Tín hiệu busy từ TX
+    logic                  full, empty;              // Trạng thái buffer
+	 logic enable;
+    // --- Buffer status logic
+    logic buffer_full;
+    logic buffer_empty;
+
+    assign buffer_full  = (write_ptr == read_ptr - 1) ||
+                          (write_ptr == (BUFFER_SIZE-1) && read_ptr == 0);
+    assign buffer_empty = (write_ptr == read_ptr);
+
+	 AES_CTR_pipelined uut ( 
+		.clk(CLOCK_50),
+		.reset(rst_n),
+		.enable(enable),
+		.key(key),
+		.nonce(nonce),
+		.plaintext(data_128bit),
+		.ciphertext(cipher_text),
+		.valid_out(dataAES_valid)
+	  );
+    // --- UART RX instance
+    uart_rx uart_rx_inst (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .rx       (rx),
+        .data_out (rx_data),
+        .valid    (rx_valid)
+    );
+
+    // --- UART TX instance
+    uart_tx uart_tx_inst (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .trigger  (trigger),
+        .data_in  (tx_data),
+        .tx       (tx),
+        .busy     (tx_busy)
+    );
+
+    // --- Ring Buffer logic
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            write_ptr <= '0;
+            read_ptr  <= '0;
+            trigger   <= 1'b0;
+        end else begin
+            if (rx_valid && !buffer_full) begin
+                buffer[write_ptr] <= rx_data;
+                write_ptr <= (write_ptr == BUFFER_SIZE-1) ? '0 : write_ptr + 1'b1;
+            end
+
+            if (!tx_busy && !buffer_empty && !trigger) begin
+                tx_data  <= buffer[read_ptr];
+                trigger  <= 1'b1;
+                read_ptr <= (read_ptr == BUFFER_SIZE-1) ? '0 : read_ptr + 1'b1;
+            end else begin
+                trigger <= 1'b0;
+            end
+        end
+    end
+
+endmodule

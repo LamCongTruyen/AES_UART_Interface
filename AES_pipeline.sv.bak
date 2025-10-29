@@ -1,0 +1,25 @@
+module AES_pipeline (
+    input  logic        clk,
+    input  logic [127:0] plaintext,
+    input  logic [1407:0] all_keys, // 11 round keys (AES-128)
+    output logic [127:0] cypher
+);
+  logic [127:0] stage [0:10];
+
+  // Initial AddRoundKey (round 0)
+  assign stage[0] = plaintext ^ all_keys[1407 -: 128];
+
+  genvar i;
+  generate
+    for (i = 0; i < 10; i = i + 1) begin : rounds
+      AES1 round_inst (
+        .clk(clk),
+        .plaintext(stage[i]),
+        .round_key(all_keys[1407 - (i+1)*128 -: 128]),
+        .cypher(stage[i+1])
+      );
+    end
+  endgenerate
+
+  assign cypher = stage[10];
+endmodule

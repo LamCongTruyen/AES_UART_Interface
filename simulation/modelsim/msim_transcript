@@ -1,0 +1,193 @@
+# Reading C:/intelFPGA_lite/17.0/modelsim_ase/tcl/vsim/pref.tcl
+# ERROR: No extended dataflow license exists
+# do AES1_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/AES1.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/AES1.sv 
+# -- Compiling module AES1
+# 
+# Top level modules:
+# 	AES1
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/sbox.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/sbox.sv 
+# -- Compiling module sbox
+# 
+# Top level modules:
+# 	sbox
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/shiftrow.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/shiftrow.sv 
+# -- Compiling module shiftrow
+# 
+# Top level modules:
+# 	shiftrow
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/KeyExp.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/KeyExp.sv 
+# -- Compiling module KeyExp
+# 
+# Top level modules:
+# 	KeyExp
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/AES_lastround.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/AES_lastround.sv 
+# -- Compiling module AES_lastround
+# 
+# Top level modules:
+# 	AES_lastround
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/MixColumns_function.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/MixColumns_function.sv 
+# -- Compiling module MixColumns_function
+# 
+# Top level modules:
+# 	MixColumns_function
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/AES_pipeline_Encryption.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/AES_pipeline_Encryption.sv 
+# -- Compiling module AES_pipeline_Encryption
+# 
+# Top level modules:
+# 	AES_pipeline_Encryption
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/AES_CTR_pipelined.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/AES_CTR_pipelined.sv 
+# -- Compiling module AES_CTR_pipelined
+# 
+# Top level modules:
+# 	AES_CTR_pipelined
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/AES0.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/AES0.sv 
+# -- Compiling module AES0
+# 
+# Top level modules:
+# 	AES0
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -sv -work work +incdir+E:/BCTT/TC {E:/BCTT/TC/AES_CTR_Pipelined_tb.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:47:24 on Oct 17,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/BCTT/TC" E:/BCTT/TC/AES_CTR_Pipelined_tb.sv 
+# -- Compiling module AES_CTR_Pipelined_tb
+# 
+# Top level modules:
+# 	AES_CTR_Pipelined_tb
+# End time: 13:47:24 on Oct 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  AES_CTR_Pipelined_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" AES_CTR_Pipelined_tb 
+# Start time: 13:47:25 on Oct 17,2025
+# Loading sv_std.std
+# Loading work.AES_CTR_Pipelined_tb
+# Loading work.AES_CTR_pipelined
+# Loading work.AES_pipeline_Encryption
+# Loading work.KeyExp
+# Loading work.AES0
+# Loading work.AES1
+# Loading work.shiftrow
+# Loading work.MixColumns_function
+# Loading work.AES_lastround
+# Loading work.sbox
+# 
+# add wave *
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: PC  Hostname: DESKTOP-L2OO8OF  ProcessID: 5916
+#           Attempting to use alternate WLF file "./wlft0t61ws".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft0t61ws
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ==== AES CTR PIPELINE TEST ====
+# [5000] enable=0 valid_out=0 counter=00000000000000000000000000000000 plaintext=00000000000000000000000000000000 ciphertext=00000000000000000000000000000000
+# [15000] enable=0 valid_out=0 counter=00000000000000000000000000000000 plaintext=00000000000000000000000000000000 ciphertext=00000000000000000000000000000000
+# [25000] enable=0 valid_out=0 counter=00000000000000000000000000000000 plaintext=00000000000000000000000000000000 ciphertext=00000000000000000000000000000000
+# [35000] enable=0 valid_out=0 counter=00000000000000000000000000000000 plaintext=00000000000000000000000000000000 ciphertext=00000000000000000000000000000000
+# [45000] enable=0 valid_out=0 counter=00000000000000000000000000000000 plaintext=00000000000000000000000000000000 ciphertext=00000000000000000000000000000000
+# [55000] enable=1 valid_out=0 counter=00000000000000000000000000000000 plaintext=11111111111111111111111111111111 ciphertext=00000000000000000000000000000000
+# [65000] enable=1 valid_out=0 counter=00000000000000000000000000000001 plaintext=11111111111111111111111111111112 ciphertext=00000000000000000000000000000000
+# [75000] enable=1 valid_out=0 counter=00000000000000000000000000000002 plaintext=11111111111111111111111111111113 ciphertext=00000000000000000000000000000000
+# [85000] enable=1 valid_out=0 counter=00000000000000000000000000000003 plaintext=11111111111111111111111111111114 ciphertext=00000000000000000000000000000000
+# [95000] enable=1 valid_out=0 counter=00000000000000000000000000000004 plaintext=11111111111111111111111111111115 ciphertext=00000000000000000000000000000000
+# [105000] enable=1 valid_out=0 counter=00000000000000000000000000000005 plaintext=11111111111111111111111111111116 ciphertext=00000000000000000000000000000000
+# [115000] enable=1 valid_out=0 counter=00000000000000000000000000000006 plaintext=11111111111111111111111111111117 ciphertext=00000000000000000000000000000000
+# [125000] enable=1 valid_out=0 counter=00000000000000000000000000000007 plaintext=11111111111111111111111111111118 ciphertext=00000000000000000000000000000000
+# [135000] enable=1 valid_out=0 counter=00000000000000000000000000000008 plaintext=11111111111111111111111111111119 ciphertext=00000000000000000000000000000000
+# [145000] enable=1 valid_out=0 counter=00000000000000000000000000000009 plaintext=1111111111111111111111111111111a ciphertext=00000000000000000000000000000000
+# [155000] enable=1 valid_out=0 counter=0000000000000000000000000000000a plaintext=1111111111111111111111111111111b ciphertext=00000000000000000000000000000000
+# [165000] enable=1 valid_out=0 counter=0000000000000000000000000000000b plaintext=1111111111111111111111111111111c ciphertext=00000000000000000000000000000000
+# [175000] enable=1 valid_out=1 counter=0000000000000000000000000000000c plaintext=1111111111111111111111111111111d ciphertext=244365cab7d57fd426866c4bee6500c5
+# [185000] enable=1 valid_out=1 counter=0000000000000000000000000000000d plaintext=1111111111111111111111111111111e ciphertext=c21307d92c813f4181380d8c269eed1a
+# [195000] enable=1 valid_out=1 counter=0000000000000000000000000000000e plaintext=1111111111111111111111111111111f ciphertext=be862ebe66f5a2dde8600b353649670e
+# [205000] enable=1 valid_out=1 counter=0000000000000000000000000000000f plaintext=11111111111111111111111111111120 ciphertext=d8e5a4061ffceaabbcb5e6a3041ed32f
+# [215000] enable=1 valid_out=1 counter=00000000000000000000000000000010 plaintext=11111111111111111111111111111121 ciphertext=569f8ded869897018e1dca366cd9ebbe
+# [225000] enable=1 valid_out=1 counter=00000000000000000000000000000011 plaintext=11111111111111111111111111111122 ciphertext=a5a44ee9a6318057887b6073e86bc236
+# [235000] enable=1 valid_out=1 counter=00000000000000000000000000000012 plaintext=11111111111111111111111111111123 ciphertext=d7824d683f55713e324b1714c0778b6f
+# [245000] enable=1 valid_out=1 counter=00000000000000000000000000000013 plaintext=11111111111111111111111111111124 ciphertext=14dfb2a93baa079db7542ef19bd687f7
+# [255000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=ef6d314a56fcd9348b012931f5023799
+# [265000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=59094f3f1006eea1a1f21f5890263b1e
+# [275000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=f3c9a7324e03ecc28bb39453c5d6433c
+# [285000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=4de449b6bb23d96d14cc7da459b7b54d
+# [295000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=23c5a69249702f5ccb5bfe7a77c086a5
+# [305000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=a065a5f82f24ad5ab50588dfc095e47f
+# [315000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=59209e5a732c517cfd2ca5a51108f304
+# [325000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=9486a8579bdffbb230c49d0842f80afe
+# [335000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=bc7c759604fa2639beeaa325dc2546e2
+# [345000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=d4253443ac620a1994fc1ce9128c3460
+# [355000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=524acc77cd20ed37d383984bc124f361
+# [365000] enable=0 valid_out=1 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=df9bc1b4ebbc2e4955bf0f2e6e946736
+# [375000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [385000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [395000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [405000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [415000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [425000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [435000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# [445000] enable=0 valid_out=0 counter=00000000000000000000000000000014 plaintext=11111111111111111111111111111124 ciphertext=00000000000000000000000000000000
+# ** Note: $finish    : E:/BCTT/TC/AES_CTR_Pipelined_tb.sv(71)
+#    Time: 445 ns  Iteration: 1  Instance: /AES_CTR_Pipelined_tb
+# 1
+# Break in Module AES_CTR_Pipelined_tb at E:/BCTT/TC/AES_CTR_Pipelined_tb.sv line 71
+# End time: 14:15:39 on Oct 17,2025, Elapsed time: 0:28:14
+# Errors: 0, Warnings: 2

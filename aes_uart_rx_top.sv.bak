@@ -1,0 +1,94 @@
+module aes_uart_rx_top (
+    input  logic clk,
+    input  logic rst_n,
+    input  logic rx,
+    output logic [127:0] ciphertext,
+    output logic valid_out
+);
+
+    // Key và nonce cố định
+    localparam logic [127:0] KEY = 128'h0f1571c947d9e8590cb7add6af7f6798;
+    localparam logic [127:0] NONCE = 128'h00000000000000000000000000000001;
+
+    // Tín hiệu từ UART RX
+    logic [7:0] uart_data_out;
+    logic uart_valid;
+
+    // Tín hiệu cho AES
+    logic aes_reset;
+    logic aes_enable;
+    logic [127:0] aes_plaintext;
+
+    assign aes_reset = ~rst_n;
+
+    // Buffer để gom 16 byte thành plaintext
+    logic [7:0] buffer [0:15];
+    logic [3:0] count;
+    logic buffer_full;
+
+    assign buffer_full = (count == 4'd16);
+
+    // Logic gom buffer
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            count <= 4'd0;
+            for (int i = 0; i < 16; i++) begin
+                buffer[i] <= 8'h0;
+            end
+        end else begin
+            if (uart_valid) begin
+                if (count < 4'd16) begin
+                    buffer[count] <= uart_data_out;
+                    count <= count + 1'b1;
+                end
+            end
+            if (buffer_full) begin
+                count <= 4'd0;  // Reset count sau khi đủ
+            end
+        end
+    end
+
+    // Ghép buffer thành plaintext khi đủ 16 byte
+    always_comb begin
+        aes_plaintext = 128'h0;
+        if (buffer_full) begin
+            for (int i = 0; i < 16; i++) begin
+                aes_plaintext[127 - i*8 -: 8] = buffer[i];
+            end
+        end
+    end
+
+    // Kích hoạt AES khi buffer đầy (enable chỉ 1 cycle)
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            aes_enable <= 1'b0;
+        end else begin
+            aes_enable <= buffer_full;
+        end
+    end
+
+    // Instantiate UART RX
+    uart_rx #(
+        .BAUD_DIV(434),
+        .TICK_DIV(27)
+    ) u_uart_rx (
+        .clk(clk),
+        .rst_n(rst_n),
+        .rx(rx),
+        .data_out(uart_data_out),
+        .valid(uart_valid)
+    );
+
+    // Instantiate AES_CTR_pipelined
+    AES_CTR_pipelined u_aes (
+        .clk(clk),
+        .reset(aes_reset),
+        .enable(aes_enable),
+        .key(KEY),
+        .nonce(NONCE),
+        .plaintext(aes_plaintext),
+        .ciphertext(ciphertext),
+        .valid_out(valid_out)
+    );
+
+endmodule

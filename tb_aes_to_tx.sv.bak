@@ -1,0 +1,159 @@
+`timescale 1ns / 1ps
+
+module tb_aes_to_tx;
+
+    // ========================================
+    // Tham số
+    // ========================================
+    localparam CLK_PERIOD = 20;           // 50 MHz → 20ns
+    localparam BAUD_DIV   = 434;          // 50M / 115200 ≈ 434
+    localparam TICK_DIV   = 27;           // 16x oversampling
+    localparam BIT_TIME   = BAUD_DIV * TICK_DIV * CLK_PERIOD; // ~8680 ns
+	 //localparam logic [127:0] TEST_PLAINTEXT = 128'h00112233445566778899aabbccddeeff;
+	 //logic [127:0] plaintext;
+    // ========================================
+    // Tín hiệu
+    // ========================================
+    logic clk;
+    logic rst_n;
+    logic enable;
+    //logic [127:0] key;
+    //logic [127:0] nonce;
+    logic [127:0] plaintext;
+    logic [127:0] ciphertext;
+    logic tx;
+    logic busy;
+
+    // DUT
+    aes_uart_tx_top dut (
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .plaintext(plaintext),
+        .tx(tx),
+        .busy(busy)
+    );
+
+    // ========================================
+    // Tạo xung clock
+    // ========================================
+    initial begin
+        clk = 0;
+        forever #(CLK_PERIOD/2) clk = ~clk;
+    end
+
+    // ========================================
+    // Tạo plaintext ngẫu nhiên
+    // ========================================
+    logic [127:0] test_plaintext;
+    initial begin
+        test_plaintext = 128'h00112233445566778899AABBCCDDEEFF;
+        $display("\n=== TESTCASE: PLAINTEXT tb_aes_uart_tx  ===");
+        $display("Plaintext gui: %032h", test_plaintext);
+    end
+    
+	 assign ciphertext= dut.aes_ciphertext;
+    // ========================================
+    // Task: Nhận 1 byte từ UART TX
+    // ========================================
+    task automatic receive_uart_byte(output [7:0] data);
+        integer i;
+        begin
+            data = 8'h00;
+            // Chờ start bit (0)
+            @(negedge tx);
+            #(BIT_TIME/2); // Lấy mẫu giữa bit
+
+            // 8 data bits (LSB first)
+            for (i = 0; i < 8; i++) begin
+                #(BIT_TIME);
+                data[i] = tx;
+            end
+
+            // Stop bit
+            #(BIT_TIME);
+            if (tx !== 1'b1) begin
+                $display("loi stopbit khong phai 1");
+            end
+        end
+    endtask
+
+    // ========================================
+    // Task: Nhận toàn bộ 16 byte ciphertext
+    // ========================================
+    task automatic receive_ciphertext(output [127:0] ciphertext_out);
+        integer i;
+        logic [7:0] recv_byte;
+        begin
+            $display("\n=== nhan ciphertext qua tx===");
+				ciphertext_out = 128'h0;
+            for (i = 0; i < 16; i++) begin
+                receive_uart_byte(recv_byte);
+                ciphertext_out[127 - i*8 -: 8] = recv_byte;
+                $display("nhan byte %0d: %02h", i, recv_byte);
+            end
+				$display("=== HOAN TAT NHAN CIPHERTEXT: %032h ===\n", ciphertext_out);
+        end
+    endtask
+
+    // ========================================
+    // Kịch bản chính
+    // ========================================
+    initial begin
+        logic [127:0] received_ciphertext;
+
+        // Reset
+        rst_n   = 0;
+        enable  = 0;
+        plaintext = 128'h0;
+		  //dut.key = 128'h0f1571c947d9e8590cb7add6af7f6798;
+        //dut.nonce = 128'h00000000000000000000000000000001;
+		  repeat (5) @(posedge clk);
+        rst_n = 1;
+        #10;
+
+        // Kích hoạt AES
+        $display("\n===(enable AES = 1) ===");
+        enable = 1'b1;
+        @(posedge clk);
+		  plaintext = 128'h00112233445566778899aabbccddeeff;
+        enable = 1'b0;
+		  repeat (12) @(posedge clk);
+		  
+		  
+        // Chờ AES xử lý xong (valid_out nội bộ)
+        //wait (dut.aes_valid_out == 1'b1);
+        //#100;
+
+        $display("\n[ %0t ] AES DONE (trong DUT)!", $time);
+        //$display("Ciphertext (trong DUT): %032h", dut.aes_ciphertext);
+
+        // Chờ UART gửi xong
+        //wait (busy == 1'b0);
+        //#1000;
+
+        // Nhận ciphertext từ TX
+        //receive_ciphertext(dut.aes_ciphertext);
+
+        // So sánh
+		  //wait (busy == 1'b0);
+		  //receive_ciphertext(received_ciphertext);
+
+      ///
+			#1000;
+			//rst_n   = 0;
+			//#50;
+        //$display("\n=== TESTBENCH done ===\n");
+        $finish;
+    end
+
+    // ========================================
+    // Monitor trạng thái UART TX
+    // ========================================
+	always @(posedge clk) begin
+        $display("[%0t] enable=%0b dutvalid_out=%0b plaintext=%032h dutciphertext=%032h",
+                  $time, enable, dut.aes_valid_out, plaintext, dut.aes_ciphertext);
+
+    end
+
+endmodule

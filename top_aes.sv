@@ -1,0 +1,55 @@
+module top_aes (
+    input  logic        clk,        // clock
+    input  logic        reset,      // reset
+    input  logic  [2:0] sel,        // chọn mux: 000..111
+	 input logic enable,
+	 input logic s,
+    output logic [6:0] hex0,
+    output logic [6:0] hex1,
+    output logic [6:0] hex2,
+    output logic [6:0] hex3  // 16-bit output
+);
+
+    // Khai báo plaintext và key
+    logic [127:0] plaintext;
+    logic [127:0] key;
+    logic [127:0] cypher;
+    logic [15:0] cypher_out;
+    // Gán test vector
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset) begin
+		  if(s) begin 
+            plaintext <= 128'h1123456789abcdeffedcba9876543210;
+				end
+				else
+				plaintext <= 128'h0123456789abcdeffedcba9876543210;
+            key       <= 128'h0f1571c947d9e8590cb7add6af7f6798;
+        end
+    end
+
+    // Gọi AES1
+    AES_Encryption aes_inst (
+        .clk       (clk),
+		  .reset      (~reset),
+		  .enable     (~enable),
+        .plaintext (plaintext),
+        .key       (key),
+        .cypher    (cypher)
+    );
+
+    // MUX chọn 16-bit để xuất ra ngoài
+    always_comb begin
+        case (sel)
+            3'b000: cypher_out = cypher[127:112];
+            3'b001: cypher_out = cypher[111:96];
+            3'b010: cypher_out = cypher[95:80];
+            3'b011: cypher_out = cypher[79:64];
+            3'b100: cypher_out = cypher[63:48];
+            3'b101: cypher_out = cypher[47:32];
+            3'b110: cypher_out = cypher[31:16];
+            3'b111: cypher_out = cypher[15:0];
+            default: cypher_out = 16'h0;
+        endcase
+    end
+led u1(.datain(cypher_out),.hex0(hex0),.hex1(hex1),.hex2(hex2),.hex3(hex3));
+endmodule

@@ -1,0 +1,85 @@
+module aes_uart_tx_top (
+    input  logic clk,
+    input  logic rst_n,
+    input  logic enable,
+    input  logic [127:0] plaintext,
+    output logic tx,
+    output logic busy
+);
+
+    // Key và nonce cố định
+    localparam logic [127:0] KEY = 128'h0f1571c947d9e8590cb7add6af7f6798;
+    localparam logic [127:0] NONCE = 128'h00000000000000000000000000000001;
+
+    // Tín hiệu từ AES
+    logic aes_reset;
+    logic [127:0] aes_ciphertext;
+    logic aes_valid_out;
+
+    assign aes_reset = ~rst_n;
+
+    // Instantiate AES_CTR_pipelined
+    AES_CTR_pipelined u_aes (
+        .clk(clk),
+        .reset(aes_reset),
+        .enable(enable),
+        .key(KEY),
+        .nonce(NONCE),
+        .plaintext(plaintext),
+        .ciphertext(aes_ciphertext),
+        .valid_out(aes_valid_out)
+    );
+
+    // Buffer để phân tách ciphertext thành 16 byte
+    logic [7:0] buffer [0:15];
+    logic [3:0] count;
+    logic buffer_ready;
+
+    // Logic phân tách khi aes_valid_out
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            count <= 4'd0;
+            buffer_ready <= 1'b0;
+            for (int i = 0; i < 16; i++) begin
+                buffer[i] <= 8'h0;
+            end
+        end else begin
+            if (aes_valid_out && !buffer_ready) begin
+                for (int i = 0; i < 16; i++) begin
+                    buffer[i] <= aes_ciphertext[127 - i*8 -: 8];
+                end
+                buffer_ready <= 1'b1;
+                count <= 4'd0;
+            end else if (uart_trigger) begin
+                count <= count + 1'b1;
+                if (count == 4'd15) begin
+                    buffer_ready <= 1'b0;
+                end
+            end
+        end
+    end
+
+    // Tín hiệu cho UART TX
+    logic uart_trigger;
+    logic [7:0] uart_data_in;
+    logic uart_busy;
+
+    assign uart_data_in = buffer[count];
+    assign uart_trigger = buffer_ready && !uart_busy && (count < 4'd16);
+
+    // Instantiate uart_tx
+    uart_tx #(
+        .BAUD_DIV(434),
+        .TICK_DIV(27)
+    ) u_uart_tx (
+        .clk(clk),
+        .rst_n(rst_n),
+        .trigger(uart_trigger),
+        .data_in(uart_data_in),
+        .tx(tx),
+        .busy(uart_busy)
+    );
+
+    assign busy = uart_busy || buffer_ready;
+
+endmodule

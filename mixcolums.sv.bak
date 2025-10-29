@@ -1,0 +1,15 @@
+module mixcolums(data,dataout);
+input  logic [7:0] data [0:15];
+output  logic [7:0] dataout [0:15];
+logic [7:0]L[0:15];
+logic [7:0]E[0:15];
+logic [7:0]temp[0:15];
+assign temp = data;
+genvar i;
+generate
+  for (i = 0; i < 16; i++) begin : gen_Ltable
+    Ltable u (.a(temp[i]), .l(L[i]));
+  end
+endgenerate
+assign dataout = L;
+endmodule

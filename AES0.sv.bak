@@ -1,0 +1,15 @@
+module AES0 (
+    input  logic        clk,
+    input  logic [127:0] plaintext,   // đầu vào round
+    input  logic [127:0] key,   // khóa round i
+    output logic [127:0] cypher       // đầu ra round
+);
+
+  assign round_out = plaintext ^ key;
+
+  // --- Pipeline Register (1 stage delay) ---
+  always_ff @(posedge clk) begin
+      cypher <= round_out;
+  end
+
+endmodule

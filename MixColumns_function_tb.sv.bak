@@ -1,0 +1,26 @@
+`timescale 1ns / 1ps
+
+module MixColumns_function_tb;
+   logic clk;
+  logic [127:0] data;
+  logic [127:0] dataout;
+
+  mixcolums dut (
+    .clk(clk),
+    .in(data),
+    .dataout(dataout)
+  );
+  initial begin
+    clk = 0;
+    forever #10 clk = ~clk; 
+  end
+  initial begin
+    data = 128'hed6fe27a1a675b4c840019419712dc2a;
+
+    #10;
+	 $display("BeforeShiftround = %h", data);
+    $display("AfterShiftround = %h", dataout);
+
+  end
+
+endmodule

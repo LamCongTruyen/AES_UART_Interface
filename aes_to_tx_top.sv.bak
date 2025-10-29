@@ -1,0 +1,136 @@
+
+module aes_to_tx_top #(
+    parameter CLK_FREQ   = 50000000,   // 50 MHz
+    parameter BAUD_RATE  = 115200
+)(
+    input  logic         clk,
+    input  logic         reset,
+
+    // AES interface
+    input  logic         start,
+    input  logic [127:0] ciphertext,
+
+    // UART interface
+    output logic         tx,
+    output logic         done
+);
+
+    // =============================
+    // UART cấu hình
+    // =============================
+    localparam integer BAUD_DIV = CLK_FREQ / BAUD_RATE;
+
+    // =============================
+    // UART tín hiệu
+    // =============================
+    logic        uart_trigger;
+    logic [7:0]  uart_data_in;
+    logic        uart_busy;
+
+    // =============================
+    // Bộ nhớ đệm
+    // =============================
+    logic [7:0] buffer [0:15];
+    logic [3:0] byte_idx;
+
+    // =============================
+    // Trạng thái FSM
+    // =============================
+    typedef enum logic [1:0] {
+        ST_IDLE = 2'd0,
+        ST_LOAD = 2'd1,
+        ST_SEND = 2'd2,
+        ST_DONE = 2'd3
+    } state_t;
+
+    state_t state;
+
+    // =============================
+    // UART TX module
+    // =============================
+    uart_tx uart_tx_inst (
+        .clk(clk),
+        .rst_n(!reset),
+        .trigger(uart_trigger),
+        .data_in(uart_data_in),
+        .tx(tx),
+        .busy(uart_busy)
+    );
+
+    // =============================
+    // FSM duy nhất (always_ff)
+    // =============================
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset) begin
+            state        <= ST_IDLE;
+            byte_idx     <= 0;
+            uart_trigger <= 0;
+            done         <= 0;
+        end else begin
+            // Mặc định
+            uart_trigger <= 0;
+            done <= 0;
+
+            case (state)
+                // =====================
+                // Trạng thái chờ
+                // =====================
+                ST_IDLE: begin
+                    if (start) begin
+                        state <= ST_LOAD;
+                    end
+                end
+
+                // =====================
+                // Tách 128-bit thành 16 byte
+                // =====================
+                ST_LOAD: begin
+                    buffer[0]  <= ciphertext[127:120];
+                    buffer[1]  <= ciphertext[119:112];
+                    buffer[2]  <= ciphertext[111:104];
+                    buffer[3]  <= ciphertext[103:96];
+                    buffer[4]  <= ciphertext[95:88];
+                    buffer[5]  <= ciphertext[87:80];
+                    buffer[6]  <= ciphertext[79:72];
+                    buffer[7]  <= ciphertext[71:64];
+                    buffer[8]  <= ciphertext[63:56];
+                    buffer[9]  <= ciphertext[55:48];
+                    buffer[10] <= ciphertext[47:40];
+                    buffer[11] <= ciphertext[39:32];
+                    buffer[12] <= ciphertext[31:24];
+                    buffer[13] <= ciphertext[23:16];
+                    buffer[14] <= ciphertext[15:8];
+                    buffer[15] <= ciphertext[7:0];
+                    byte_idx   <= 0;
+                    state      <= ST_SEND;
+                end
+
+                // =====================
+                // Gửi từng byte
+                // =====================
+                ST_SEND: begin
+                    // Khi UART rảnh và chưa gửi byte mới → gửi 1 byte
+                    if (!uart_busy && !uart_trigger && byte_idx < 16) begin
+                        uart_data_in <= buffer[byte_idx];
+                        uart_trigger <= 1'b1;
+                        byte_idx <= byte_idx + 1'b1;
+                    end
+                    // Khi đã gửi hết 16 byte và UART rảnh
+                    else if (byte_idx == 16 && !uart_busy) begin
+                        state <= ST_DONE;
+                    end
+                end
+
+                // =====================
+                // Hoàn tất
+                // =====================
+                ST_DONE: begin
+                    done <= 1'b1;
+                    if (!start)
+                        state <= ST_IDLE;
+                end
+            endcase
+        end
+    end
+
+endmodule

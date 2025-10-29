@@ -1,0 +1,5 @@
+module test1(in,out);
+input logic [7:0] in;
+output logic [7:0] out;
+assign out = (in + 8'h19)%255;
+endmodule

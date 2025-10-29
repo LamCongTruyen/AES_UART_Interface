@@ -1,0 +1,633 @@
+# Reading pref.tcl
+# do AES1_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES1.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:29 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/AES1.sv 
+# -- Compiling module AES1
+# 
+# Top level modules:
+# 	AES1
+# End time: 18:54:29 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/sbox.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:29 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/sbox.sv 
+# -- Compiling module sbox
+# 
+# Top level modules:
+# 	sbox
+# End time: 18:54:29 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/shiftrow.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:30 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/shiftrow.sv 
+# -- Compiling module shiftrow
+# 
+# Top level modules:
+# 	shiftrow
+# End time: 18:54:30 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/KeyExp.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:30 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/KeyExp.sv 
+# -- Compiling module KeyExp
+# 
+# Top level modules:
+# 	KeyExp
+# End time: 18:54:30 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES_lastround.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:30 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/AES_lastround.sv 
+# -- Compiling module AES_lastround
+# 
+# Top level modules:
+# 	AES_lastround
+# End time: 18:54:30 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/MixColumns_function.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:30 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/MixColumns_function.sv 
+# -- Compiling module MixColumns_function
+# 
+# Top level modules:
+# 	MixColumns_function
+# End time: 18:54:30 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES_pipeline_Encryption.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:30 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/AES_pipeline_Encryption.sv 
+# -- Compiling module AES_pipeline_Encryption
+# 
+# Top level modules:
+# 	AES_pipeline_Encryption
+# End time: 18:54:30 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES_CTR_pipelined.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:30 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/AES_CTR_pipelined.sv 
+# -- Compiling module AES_CTR_pipelined
+# 
+# Top level modules:
+# 	AES_CTR_pipelined
+# End time: 18:54:31 on Oct 29,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES0.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:31 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/AES0.sv 
+# -- Compiling module AES0
+# 
+# Top level modules:
+# 	AES0
+# End time: 18:54:31 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/uart_tx.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:31 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/uart_tx.sv 
+# -- Compiling module uart_tx
+# 
+# Top level modules:
+# 	uart_tx
+# End time: 18:54:31 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/uart_rx.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:31 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/uart_rx.sv 
+# -- Compiling module uart_rx
+# 
+# Top level modules:
+# 	uart_rx
+# End time: 18:54:31 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/aes_to_tx_top.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:31 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/aes_to_tx_top.sv 
+# -- Compiling module aes_to_tx_top
+# 
+# Top level modules:
+# 	aes_to_tx_top
+# End time: 18:54:31 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/uart_rx_top.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:31 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/uart_rx_top.sv 
+# -- Compiling module uart_rx_top
+# 
+# Top level modules:
+# 	uart_rx_top
+# End time: 18:54:31 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/aes_uart_top.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:31 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/aes_uart_top.sv 
+# -- Compiling module aes_uart_top
+# 
+# Top level modules:
+# 	aes_uart_top
+# End time: 18:54:32 on Oct 29,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:54:32 on Oct 29,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/lamco/Downloads/TC/TC" C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv 
+# -- Compiling module AES_CTR_Pipelined_tb
+# 
+# Top level modules:
+# 	AES_CTR_Pipelined_tb
+# End time: 18:54:32 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  AES_CTR_Pipelined_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" AES_CTR_Pipelined_tb 
+# Start time: 18:54:32 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.AES_CTR_Pipelined_tb
+# Loading work.AES_CTR_pipelined
+# Loading work.AES_pipeline_Encryption
+# Loading work.KeyExp
+# Loading work.AES0
+# Loading work.AES1
+# Loading work.shiftrow
+# Loading work.MixColumns_function
+# Loading work.AES_lastround
+# Loading work.sbox
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ==== AES CTR PIPELINE TEST ====
+# ==== TEST DONE ====
+# ** Note: $stop    : C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv(126)
+#    Time: 345 ns  Iteration: 1  Instance: /AES_CTR_Pipelined_tb
+# Break in Module AES_CTR_Pipelined_tb at C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv line 126
+quit -sim
+# End time: 18:59:50 on Oct 29,2025, Elapsed time: 0:05:18
+# Errors: 0, Warnings: 0
+cd C:/Users/lamco/Downloads/TC/TC
+# reading modelsim.ini
+vlib work
+# ** Warning: (vlib-34) Library already exists at "work".
+vmap work work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work work 
+# Modifying modelsim.ini
+vlog AES_CTR_pipelined.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:00:25 on Oct 29,2025
+# vlog -reportprogress 300 AES_CTR_pipelined.sv 
+# -- Compiling module AES_CTR_pipelined
+# 
+# Top level modules:
+# 	AES_CTR_pipelined
+# End time: 19:00:25 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog AES_CTR_Pipelined_tb.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:00:25 on Oct 29,2025
+# vlog -reportprogress 300 AES_CTR_Pipelined_tb.sv 
+# -- Compiling module AES_CTR_Pipelined_tb
+# 
+# Top level modules:
+# 	AES_CTR_Pipelined_tb
+# End time: 19:00:25 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim AES_CTR_Pipelined_tb
+# vsim AES_CTR_Pipelined_tb 
+# Start time: 19:00:25 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.AES_CTR_Pipelined_tb
+# Loading work.AES_CTR_pipelined
+# Loading work.AES_pipeline_Encryption
+# Loading work.KeyExp
+# Loading work.AES0
+# Loading work.AES1
+# Loading work.shiftrow
+# Loading work.MixColumns_function
+# Loading work.AES_lastround
+# Loading work.sbox
+add wave *
+run -all
+# ==== AES CTR PIPELINE TEST ====
+# ==== TEST DONE ====
+# ** Note: $stop    : AES_CTR_Pipelined_tb.sv(126)
+#    Time: 345 ns  Iteration: 1  Instance: /AES_CTR_Pipelined_tb
+# Break in Module AES_CTR_Pipelined_tb at AES_CTR_Pipelined_tb.sv line 126
+vlog uart_rx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:03:03 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx.sv 
+# -- Compiling module uart_rx
+# 
+# Top level modules:
+# 	uart_rx
+# End time: 19:03:03 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog uart_rx_top.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:03:03 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx_top.sv 
+# -- Compiling module uart_rx_top
+# 
+# Top level modules:
+# 	uart_rx_top
+# End time: 19:03:03 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog tb_uart_rx_top.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:03:04 on Oct 29,2025
+# vlog -reportprogress 300 tb_uart_rx_top.sv 
+# -- Compiling module tb_uart_rx_top
+# 
+# Top level modules:
+# 	tb_uart_rx_top
+# End time: 19:03:04 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim tb_uart_rx_top
+# End time: 19:03:06 on Oct 29,2025, Elapsed time: 0:02:41
+# Errors: 0, Warnings: 0
+# vsim tb_uart_rx_top 
+# Start time: 19:03:06 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.tb_uart_rx_top
+# Loading work.uart_rx_top
+# Loading work.uart_rx
+add wave *
+run -all
+# [200000 ns] Bắt đầu gửi UART...
+# [11110600000 ns] Đã gửi xong 32 byte UART.
+# [11110630000 ns] ✅ DATA 128-bit = 000102030405060708090a0b0c0d0e0f
+# ** Note: $stop    : tb_uart_rx_top.sv(122)
+#    Time: 11111610 ns  Iteration: 0  Instance: /tb_uart_rx_top
+# Break in Module tb_uart_rx_top at tb_uart_rx_top.sv line 122
+vlog uart_rx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:04:39 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx.sv 
+# -- Compiling module uart_rx
+# 
+# Top level modules:
+# 	uart_rx
+# End time: 19:04:39 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog uart_rx_top.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:04:39 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx_top.sv 
+# -- Compiling module uart_rx_top
+# 
+# Top level modules:
+# 	uart_rx_top
+# End time: 19:04:39 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog tb_uart_rx_top.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:04:39 on Oct 29,2025
+# vlog -reportprogress 300 tb_uart_rx_top.sv 
+# -- Compiling module tb_uart_rx_top
+# 
+# Top level modules:
+# 	tb_uart_rx_top
+# End time: 19:04:39 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim tb_uart_rx_top
+# End time: 19:04:41 on Oct 29,2025, Elapsed time: 0:01:35
+# Errors: 0, Warnings: 0
+# vsim tb_uart_rx_top 
+# Start time: 19:04:41 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.tb_uart_rx_top
+# Loading work.uart_rx_top
+# Loading work.uart_rx
+add wave *
+run -all
+# [200000 ns] Bắt đầu gửi UART...
+# [1389000000 ns] Đã gửi xong 32 byte UART.
+# [1389030000 ns] ✅ DATA 128-bit = 000102030405060708090a0b0c0d0e0f
+# ** Note: $stop    : tb_uart_rx_top.sv(122)
+#    Time: 1390010 ns  Iteration: 0  Instance: /tb_uart_rx_top
+# Break in Module tb_uart_rx_top at tb_uart_rx_top.sv line 122
+vlog uart_rx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:05:46 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx.sv 
+# -- Compiling module uart_rx
+# 
+# Top level modules:
+# 	uart_rx
+# End time: 19:05:46 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog uart_rx_top.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:05:47 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx_top.sv 
+# -- Compiling module uart_rx_top
+# 
+# Top level modules:
+# 	uart_rx_top
+# End time: 19:05:47 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog tb_uart_rx_top.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:05:47 on Oct 29,2025
+# vlog -reportprogress 300 tb_uart_rx_top.sv 
+# -- Compiling module tb_uart_rx_top
+# 
+# Top level modules:
+# 	tb_uart_rx_top
+# End time: 19:05:47 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim tb_uart_rx_top
+# End time: 19:05:52 on Oct 29,2025, Elapsed time: 0:01:11
+# Errors: 0, Warnings: 0
+# vsim tb_uart_rx_top 
+# Start time: 19:05:53 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.tb_uart_rx_top
+# Loading work.uart_rx_top
+# Loading work.uart_rx
+add wave *
+run -all
+# [200000 ns] Bắt đầu gửi UART...
+# [1389000000 ns] Đã gửi xong 32 byte UART.
+# [1389030000 ns] ✅ DATA 128-bit = 000102030405060708090a0b0c0d0e0f
+# ** Note: $stop    : tb_uart_rx_top.sv(118)
+#    Time: 2389010 ns  Iteration: 0  Instance: /tb_uart_rx_top
+# Break in Module tb_uart_rx_top at tb_uart_rx_top.sv line 118
+vlog uart_tx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:08:26 on Oct 29,2025
+# vlog -reportprogress 300 uart_tx.sv 
+# -- Compiling module uart_tx
+# 
+# Top level modules:
+# 	uart_tx
+# End time: 19:08:26 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog aes_to_tx_top.sv  
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:08:26 on Oct 29,2025
+# vlog -reportprogress 300 aes_to_tx_top.sv 
+# -- Compiling module aes_to_tx_top
+# 
+# Top level modules:
+# 	aes_to_tx_top
+# End time: 19:08:26 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog tb_aes_to_tx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:08:26 on Oct 29,2025
+# vlog -reportprogress 300 tb_aes_to_tx.sv 
+# -- Compiling module tb_aes_to_tx
+# 
+# Top level modules:
+# 	tb_aes_to_tx
+# End time: 19:08:27 on Oct 29,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+vsim tb_aes_to_tx
+# End time: 19:08:29 on Oct 29,2025, Elapsed time: 0:02:36
+# Errors: 0, Warnings: 0
+# vsim tb_aes_to_tx 
+# Start time: 19:08:29 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.tb_aes_to_tx
+# Loading work.aes_to_tx_top
+# Loading work.uart_tx
+add wave *
+run -all
+# [0] wr_ptr=0 rd_ptr=0 buffer_empty=1 buffer_full=0 done=0 tx=1
+# [110000] wr_ptr=0 rd_ptr=0 buffer_empty=1 buffer_full=0 done=1 tx=1
+# [150000] wr_ptr=16 rd_ptr=0 buffer_empty=0 buffer_full=0 done=1 tx=1
+# [170000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [190000] UART trigger -> gui byte 1 = 0xd3
+# [210000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [8850000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [26130000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [43410000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [52050000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [60690000] wr_ptr=16 rd_ptr=1 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [86630000] wr_ptr=16 rd_ptr=2 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [86650000] UART trigger -> gui byte 2 = 0x02
+# [86670000] wr_ptr=16 rd_ptr=2 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [103950000] wr_ptr=16 rd_ptr=2 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [112590000] wr_ptr=16 rd_ptr=2 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [164430000] wr_ptr=16 rd_ptr=2 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [173090000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [173110000] UART trigger -> gui byte 3 = 0x16
+# [173130000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [190410000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [207690000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [216330000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [224970000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [250890000] wr_ptr=16 rd_ptr=3 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [259550000] wr_ptr=16 rd_ptr=4 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [259570000] UART trigger -> gui byte 4 = 0xc8
+# [259590000] wr_ptr=16 rd_ptr=4 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [294150000] wr_ptr=16 rd_ptr=4 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [302790000] wr_ptr=16 rd_ptr=4 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [320070000] wr_ptr=16 rd_ptr=4 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [346010000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [346030000] UART trigger -> gui byte 5 = 0x3d
+# [346050000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [354690000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [363330000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [371970000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [406530000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [423810000] wr_ptr=16 rd_ptr=5 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [432470000] wr_ptr=16 rd_ptr=6 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [432490000] UART trigger -> gui byte 6 = 0x90
+# [432510000] wr_ptr=16 rd_ptr=6 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [475710000] wr_ptr=16 rd_ptr=6 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [484350000] wr_ptr=16 rd_ptr=6 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [501630000] wr_ptr=16 rd_ptr=6 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [518930000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [518950000] UART trigger -> gui byte 7 = 0x2e
+# [518970000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [536250000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [562170000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [570810000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [579450000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [596730000] wr_ptr=16 rd_ptr=7 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [605390000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [605410000] UART trigger -> gui byte 8 = 0x50
+# [605430000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [648630000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [657270000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [665910000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [674550000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [683190000] wr_ptr=16 rd_ptr=8 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [691850000] wr_ptr=16 rd_ptr=9 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [691870000] UART trigger -> gui byte 9 = 0x90
+# [691890000] wr_ptr=16 rd_ptr=9 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [735090000] wr_ptr=16 rd_ptr=9 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [743730000] wr_ptr=16 rd_ptr=9 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [761010000] wr_ptr=16 rd_ptr=9 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [778310000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [778330000] UART trigger -> gui byte 10 = 0x29
+# [778350000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [786990000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [795630000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [812910000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [821550000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [830190000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [838830000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [856110000] wr_ptr=16 rd_ptr=10 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [864770000] wr_ptr=16 rd_ptr=11 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [864790000] UART trigger -> gui byte 11 = 0x1c
+# [864810000] wr_ptr=16 rd_ptr=11 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [890730000] wr_ptr=16 rd_ptr=11 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [916650000] wr_ptr=16 rd_ptr=11 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [942570000] wr_ptr=16 rd_ptr=11 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [951230000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [951250000] UART trigger -> gui byte 12 = 0x9d
+# [951270000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [959910000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [968550000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [977190000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1003110000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1020390000] wr_ptr=16 rd_ptr=12 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1037690000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1037710000] UART trigger -> gui byte 13 = 0x37
+# [1037730000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1046370000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1072290000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1080930000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1098210000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1115490000] wr_ptr=16 rd_ptr=13 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1124150000] wr_ptr=16 rd_ptr=14 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1124170000] UART trigger -> gui byte 14 = 0x8f
+# [1124190000] wr_ptr=16 rd_ptr=14 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1132830000] wr_ptr=16 rd_ptr=14 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1167390000] wr_ptr=16 rd_ptr=14 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1193310000] wr_ptr=16 rd_ptr=14 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1210610000] wr_ptr=16 rd_ptr=15 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1210630000] UART trigger -> gui byte 15 = 0xfc
+# [1210650000] wr_ptr=16 rd_ptr=15 buffer_empty=0 buffer_full=0 done=0 tx=0
+# [1236570000] wr_ptr=16 rd_ptr=15 buffer_empty=0 buffer_full=0 done=0 tx=1
+# [1297070000] wr_ptr=16 rd_ptr=16 buffer_empty=1 buffer_full=0 done=0 tx=1
+# [1297090000] UART trigger -> gui byte 16 = 0x08
+# [1297110000] wr_ptr=16 rd_ptr=16 buffer_empty=1 buffer_full=0 done=0 tx=0
+# [1331670000] wr_ptr=16 rd_ptr=16 buffer_empty=1 buffer_full=0 done=0 tx=1
+# [1340310000] wr_ptr=16 rd_ptr=16 buffer_empty=1 buffer_full=0 done=0 tx=0
+# [1374870000] wr_ptr=16 rd_ptr=16 buffer_empty=1 buffer_full=0 done=0 tx=1
+# [1383530000] wr_ptr=16 rd_ptr=16 buffer_empty=1 buffer_full=0 done=1 tx=1
+# ** Note: $stop    : tb_aes_to_tx.sv(48)
+#    Time: 2000170 ns  Iteration: 0  Instance: /tb_aes_to_tx
+# Break in Module tb_aes_to_tx at tb_aes_to_tx.sv line 48
+vlog uart_rx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:11:39 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx.sv 
+# -- Compiling module uart_rx
+# 
+# Top level modules:
+# 	uart_rx
+# End time: 19:11:39 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog uart_rx_tb.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:11:40 on Oct 29,2025
+# vlog -reportprogress 300 uart_rx_tb.sv 
+# -- Compiling module uart_rx_tb
+# 
+# Top level modules:
+# 	uart_rx_tb
+# End time: 19:11:40 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim uart_rx_tb
+# End time: 19:11:48 on Oct 29,2025, Elapsed time: 0:03:19
+# Errors: 0, Warnings: 0
+# vsim uart_rx_tb 
+# Start time: 19:11:48 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.uart_rx_tb
+# Loading work.uart_rx
+add wave *
+run -all
+# [82710000] VALID asserted, data_out = 41
+# [169530000] VALID asserted, data_out = 35
+# ** Note: $stop    : uart_rx_tb.sv(69)
+#    Time: 173630 ns  Iteration: 1  Instance: /uart_rx_tb
+# Break in Module uart_rx_tb at uart_rx_tb.sv line 69
+vlog uart_tx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:16:48 on Oct 29,2025
+# vlog -reportprogress 300 uart_tx.sv 
+# -- Compiling module uart_tx
+# 
+# Top level modules:
+# 	uart_tx
+# End time: 19:16:48 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog uart_tx_tb.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:16:48 on Oct 29,2025
+# vlog -reportprogress 300 uart_tx_tb.v 
+# ** Error: (vlog-7) Failed to open design unit file "uart_tx_tb.v" in read mode.
+# No such file or directory. (errno = ENOENT)
+# End time: 19:16:49 on Oct 29,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# C:/intelFPGA_lite/modelsim_ase/win32aloem/vlog failed.
+vlog uart_tx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:18:32 on Oct 29,2025
+# vlog -reportprogress 300 uart_tx.sv 
+# -- Compiling module uart_tx
+# 
+# Top level modules:
+# 	uart_tx
+# End time: 19:18:32 on Oct 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog uart_tx_tb.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:18:32 on Oct 29,2025
+# vlog -reportprogress 300 uart_tx_tb.sv 
+# -- Compiling module uart_tx_tb
+# 
+# Top level modules:
+# 	uart_tx_tb
+# End time: 19:18:33 on Oct 29,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+vsim uart_tx_tb
+# End time: 19:18:35 on Oct 29,2025, Elapsed time: 0:06:47
+# Errors: 0, Warnings: 0
+# vsim uart_tx_tb 
+# Start time: 19:18:35 on Oct 29,2025
+# Loading sv_std.std
+# Loading work.uart_tx_tb
+# Loading work.uart_tx
+add wave *
+run -all
+# >> Gửi ký tự A (0x41)
+# ** Note: $stop    : uart_tx_tb.sv(76)
+#    Time: 198070 ns  Iteration: 0  Instance: /uart_tx_tb
+# Break in Module uart_tx_tb at uart_tx_tb.sv line 76
+# End time: 19:20:08 on Oct 29,2025, Elapsed time: 0:01:33
+# Errors: 0, Warnings: 0

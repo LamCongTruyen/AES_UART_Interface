@@ -1,0 +1,18 @@
+`timescale 1ns / 1ps
+
+module initial_transform_tb;
+   logic [7:0] text [0:15],
+   logic [7:0] key [0:15],
+   logic [7:0] out1 [0:15]
+  initial_transform dut (
+    .a(data),
+    .c(sbox_out)
+  ); 
+
+  initial begin
+
+
+
+  end
+
+endmodule

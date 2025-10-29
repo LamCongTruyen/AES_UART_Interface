@@ -1,0 +1,3 @@
+module Etable( a,c);
+input  logic [7:0] a;
+output logic [7:0]c;

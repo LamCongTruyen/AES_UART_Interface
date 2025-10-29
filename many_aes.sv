@@ -1,0 +1,9 @@
+module many_aes(    input  logic        clk,        // clock
+    input  logic        reset,      // reset
+    input  logic  [2:0] sel,        // chọn mux: 000..111
+    output logic [6:0] hex0,
+    output logic [6:0] hex1,
+    output logic [6:0] hex2,
+    output logic [6:0] hex3  // 16-bit output
+);
+endmodule

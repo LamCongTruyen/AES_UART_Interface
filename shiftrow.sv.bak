@@ -1,0 +1,22 @@
+module shiftrow(in,out);
+input logic [7:0] in [0:15];
+output logic [7:0] out [0:15];
+logic [7:0] temp [0:15];
+assign tempt[0] = in[0];
+assign tempt[1] = in[13];
+assign tempt[2] = in[10];
+assign tempt[3] = in[7];
+assign tempt[4] = in[4];
+assign tempt[5] = in[1];
+assign tempt[6] = in[14];
+assign tempt[7] = in[11];
+assign tempt[8] = in[8];
+assign tempt[9] = in[5];
+assign tempt[10] = in[2];
+assign tempt[11] = in[15];
+assign tempt[12] = in[12];
+assign tempt[13] = in[9];
+assign tempt[14] = in[6];
+assign tempt[15] = in[3];
+assign out = temp;
+endmodule

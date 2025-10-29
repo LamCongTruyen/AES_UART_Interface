@@ -1,0 +1,69 @@
+`timescale 1ns/1ps
+module tb_AES_CTR_pipeline_Handshake;
+
+    logic clk, reset;
+    logic [127:0] plaintext_in;
+    logic [127:0] ciphertext_out;
+    logic valid_in, ready_in, valid_out, ready_out;
+    logic [127:0] key, nonce;
+
+    // DUT
+    AES_CTR_pipeline_Handshake #(.LATENCY(10)) dut (
+        .clk(clk), .reset(reset),
+        .plaintext_in(plaintext_in),
+        .valid_in(valid_in),
+        .ready_in(ready_in),
+        .ciphertext_out(ciphertext_out),
+        .valid_out(valid_out),
+        .ready_out(ready_out),
+        .key(key),
+        .nonce(nonce)
+    );
+
+    // Clock
+    always #5 clk = ~clk;
+
+    initial begin
+        clk = 0; reset = 1;
+        valid_in = 0; ready_out = 1;
+        plaintext_in = 0;
+        key = 128'h0f1571c947d9e8590cb7add6af7f6798;
+        nonce = 128'h00000000000000000000000000000001;
+
+        #20 reset = 0;
+
+        // Gửi block 1
+        @(posedge clk);
+        valid_in = 1;
+        plaintext_in = 128'h00112233445566778899aabbccddeeff;
+
+        @(posedge clk);
+        valid_in = 0;  // ngắt 3 chu kỳ
+        repeat(3) @(posedge clk);
+
+        // Gửi block 2
+        valid_in = 1;
+        plaintext_in = 128'h112233445566778899aabbccddeeff00;
+
+        @(posedge clk);
+        valid_in = 0;
+
+        // Gửi block 3 sau 5 chu kỳ
+        repeat(5) @(posedge clk);
+        valid_in = 1;
+        plaintext_in = 128'haabbccddeeff00112233445566778899;
+        @(posedge clk);
+        valid_in = 0;
+
+        // Giữ mô phỏng thêm
+        repeat(40) @(posedge clk);
+        $finish;
+    end
+
+    // Giám sát
+    initial begin
+        $display("Time\tvalid_in\tvalid_out\tciphertext_out");
+        $monitor("%0t\t%b\t\t%b\t\t%h", $time, valid_in, valid_out, ciphertext_out);
+    end
+
+endmodule

@@ -1,0 +1,24 @@
+`timescale 1ns / 1ps
+
+module shiftrow_tb;
+
+  // Dùng logic thay cho reg và wire
+
+  logic [7:0] in [0:15];
+  logic [7:0] out [0:15];
+  // Gọi module AES1 (DUT - Device Under Test)
+  shiftrow dut (
+    .in(in),
+    .out(out),
+  );
+
+  // Sinh tín hiệu kiểm tra
+  initial begin
+    // Test case 1
+    in = 128'hab0518e48b403f4e897ff02f35f1fcc4;
+
+    #1000; // chờ mô phỏng 20ns
+  end
+
+
+endmodule

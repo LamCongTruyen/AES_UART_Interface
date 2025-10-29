@@ -1,0 +1,7 @@
+module initial_transform (
+    input  logic [127:0] text,
+    input  logic [127:0] key,
+    output logic [127:0] outmatrix
+);
+    assign outmatrix = text ^ key;
+endmodule

@@ -1,0 +1,105 @@
+`timescale 1ns/1ps
+
+module tb_aes_uart_top;
+
+    // -----------------------------
+    // Thông số UART
+    // -----------------------------
+    localparam CLK_FREQ   = 50_000_000;    // 50 MHz
+    localparam BAUD_RATE  = 115_200;
+    localparam BIT_PERIOD = 1_000_000_000 / BAUD_RATE; // ns
+
+    // -----------------------------
+    // Tín hiệu mô phỏng
+    // -----------------------------
+    logic clk;
+    logic rst_n;
+    logic rx;
+    logic [127:0] key;
+    logic [127:0] nonce;
+    logic [127:0] ciphertext;
+    logic aes_valid_out;
+    logic buffer_full, buffer_empty;
+
+    // -----------------------------
+    // Clock 50 MHz
+    // -----------------------------
+    always #10 clk = ~clk; // 20ns period → 50MHz
+
+    // -----------------------------
+    // Gọi DUT
+    // -----------------------------
+    aes_uart_top dut (
+        .clk          (clk),
+        .rst_n        (rst_n),
+        .rx           (rx),
+        .key          (key),
+        .nonce        (nonce),
+        .ciphertext   (ciphertext),
+        .aes_valid_out(aes_valid_out),
+        .buffer_full  (buffer_full),
+        .buffer_empty (buffer_empty)
+    );
+
+    // -----------------------------
+    // Task gửi 1 byte qua UART RX
+    // -----------------------------
+    task send_uart_byte(input [7:0] data);
+        int i;
+        begin
+            rx = 1'b1;
+            #(BIT_PERIOD);
+
+            // start bit
+            rx = 1'b0;
+            #(BIT_PERIOD);
+
+            // 8 bit data (LSB first)
+            for (i = 0; i < 8; i++) begin
+                rx = data[i];
+                #(BIT_PERIOD);
+            end
+
+            // stop bit
+            rx = 1'b1;
+            #(BIT_PERIOD);
+        end
+    endtask
+
+    // -----------------------------
+    // Main test sequence
+    // -----------------------------
+    initial begin
+        $display("\n=== BẮT ĐẦU MÔ PHỎNG AES_UART_TOP ===");
+        clk = 0;
+        rx  = 1'b1;
+        rst_n = 0;
+        key   = 128'h00112233445566778899aabbccddeeff;
+        nonce = 128'h00000000000000000000000000000001;
+
+        // Reset
+        repeat(5) @(posedge clk);
+        rst_n = 1;
+        $display("[%0t ns] Hệ thống khởi động xong", $time);
+
+        // -----------------------------
+        // Gửi 16 byte (0x00 → 0x0F)
+        // -----------------------------
+        $display("[%0t ns] Gửi 16 byte vào UART RX...", $time);
+        for (int b = 0; b < 16; b++) begin
+            send_uart_byte(b);
+        end
+
+        $display("[%0t ns] Gửi xong 16 byte", $time);
+
+        // -----------------------------
+        // Theo dõi AES output
+        // -----------------------------
+        wait (aes_valid_out == 1);
+        $display("[%0t ns] AES CTR mã hóa xong, ciphertext = %h", $time, ciphertext);
+
+        #1000;
+        $finish;
+    end
+
+endmodule

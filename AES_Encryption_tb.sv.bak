@@ -1,0 +1,27 @@
+`timescale 1ns / 1ps
+
+module AES_Encryption_tb;
+
+  // Dùng logic thay cho reg và wire
+  logic [127:0] plaintext;
+  logic [127:0] key;
+  logic [7:0] cypher [0:15];
+
+  // Gọi module AES1 (DUT - Device Under Test)
+  AES_Encryption dut (
+    .plaintext(plaintext),
+    .key(key),
+    .cypher(cypher)
+  );
+
+  // Sinh tín hiệu kiểm tra
+  initial begin
+    // Test case 1
+    plaintext = 128'h0123456789abcdeffedcba9876543210;
+    key       = 128'h0f1571c947d9e8590cb7add6af7f6798;
+
+    #1000; // chờ mô phỏng 20ns
+  end
+
+
+endmodule

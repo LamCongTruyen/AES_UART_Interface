@@ -1,0 +1,40 @@
+module top_aes (
+    input  logic        clk,        // clock
+    input  logic        reset,      // reset
+    input  logic  [1:0] sel,        // chọn mux: 00->word0, 01->word1, 10->word2, 11->word3
+    output logic [31:0] cypher_out  // 32-bit output
+);
+
+    // Khai báo plaintext và key
+    logic [127:0] plaintext;
+    logic [127:0] key;
+    logic [127:0] cypher;
+
+    // Gán test vector
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset) begin
+            plaintext <= 128'h00112233445566778899aabbccddeeff;
+            key       <= 128'h000102030405060708090a0b0c0d0e0f;
+        end
+    end
+
+    // Gọi AES1
+    AES1 aes_inst (
+        .clk       (clk),
+        .plaintext (plaintext),
+        .key       (key),
+        .cypher    (cypher)
+    );
+
+    // MUX chọn 32-bit để xuất ra ngoài
+    always_comb begin
+        case (sel)
+            2'b00: cypher_out = cypher[127:96]; // word0
+            2'b01: cypher_out = cypher[95:64];  // word1
+            2'b10: cypher_out = cypher[63:32];  // word2
+            2'b11: cypher_out = cypher[31:0];   // word3
+            default: cypher_out = 32'h0;
+        endcase
+    end
+
+endmodule

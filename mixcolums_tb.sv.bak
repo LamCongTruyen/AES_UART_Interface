@@ -1,0 +1,32 @@
+`timescale 1ns / 1ps
+
+module mixcolums_tb;
+
+  // Dùng logic thay cho reg và wire
+  logic [7:0] data;
+  logic [7:0] sbox_out;
+
+  // Gọi module sbox (DUT - Device Under Test)
+  sbox dut (
+    .a(data),
+    .c(sbox_out)
+  ); // <-- Bỏ dấu phẩy dư ở đây
+
+  // Sinh tín hiệu kiểm tra
+  initial begin
+
+    data = 8'h0e; // <-- Sửa từ 7'h0e thành 8'h0e để đủ 8-bit
+    #10;
+    data = 8'h1c;
+    #20;
+
+    data = 8'h7f;
+    #30;
+
+    data = 8'h00;
+    #40;
+
+    // Kết thúc mô phỏng
+  end
+
+endmodule

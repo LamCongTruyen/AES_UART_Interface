@@ -1,0 +1,100 @@
+module aes_uart_top (
+    input  logic        clk,
+    input  logic        rst_n,
+    input  logic        rx,
+    input  logic [127:0] key,
+    input  logic [127:0] nonce,
+
+    output logic [127:0] ciphertext,
+    output logic         aes_valid_out,
+
+    // Debug / theo dõi trạng thái
+    output logic         buffer_full,
+    output logic         buffer_empty
+);
+
+    // ------------------------------
+    // Tín hiệu kết nối UART_RX_TOP
+    // ------------------------------
+    logic [127:0] data_out_128;
+    logic         data_valid;
+    logic         uart_enable;
+
+    // ------------------------------
+    // Tín hiệu kết nối AES_CTR
+    // ------------------------------
+    logic aes_enable;
+    logic aes_done;
+
+    // ------------------------------
+    // Gọi module UART_RX_TOP
+    // ------------------------------
+    uart_rx_top u_uart_rx (
+        .clk          (clk),
+        .rst_n        (rst_n),
+        .rx           (rx),
+        .enable       (uart_enable),
+        .data_out_128 (data_out_128),
+        .data_valid   (data_valid),
+        .buffer_full  (buffer_full),
+        .buffer_empty (buffer_empty)
+    );
+
+    // ------------------------------
+    // Gọi module AES_CTR_pipelined
+    // ------------------------------
+    AES_CTR_pipelined u_aes_ctr (
+        .clk        (clk),
+        .reset      (~rst_n),
+        .enable     (aes_enable),
+        .key        (key),
+        .nonce      (nonce),
+        .plaintext  (data_out_128),
+        .ciphertext (ciphertext),
+        .valid_out  (aes_done)
+    );
+
+    assign aes_valid_out = aes_done;
+
+    // ------------------------------
+    // FSM điều khiển
+    // ------------------------------
+    typedef enum logic [1:0] {
+        IDLE,
+        AES_BUSY
+    } state_t;
+
+    state_t state, next_state;
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            state <= IDLE;
+        else
+            state <= next_state;
+    end
+
+    always_comb begin
+        next_state   = state;
+        uart_enable  = 1'b0;
+        aes_enable   = 1'b0;
+
+        case (state)
+            IDLE: begin
+                uart_enable = 1'b1;  // cho phép UART hoạt động bình thường
+                if (data_valid) begin
+                    aes_enable  = 1'b1;  // bắt đầu xử lý AES
+                    next_state  = AES_BUSY;
+                end
+            end
+
+            AES_BUSY: begin
+                // UART vẫn nhận dữ liệu nhưng không lấy ra
+					 aes_enable  = 1'b0; 
+                uart_enable = 1'b0;
+                if (aes_done)
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+endmodule

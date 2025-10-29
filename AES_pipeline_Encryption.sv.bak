@@ -1,0 +1,54 @@
+module AES_pipeline_Encryption (
+    input  logic        clk,
+    input  logic        reset,
+    input  logic [127:0] plaintext,
+    input  logic [127:0] key,
+    output logic [127:0] cypher
+);
+
+  // ===========================
+  // Round keys
+  // ===========================
+  logic [127:0] round [0:10];
+
+  // Key expansion (tĩnh - combinational)
+  KeyExp_static u_keyexp (
+      .key(key),
+      .round(round)
+  );
+
+  // ===========================
+  // Pipeline AES rounds
+  // ===========================
+  logic [127:0] stage [0:9];
+
+  // Round 0
+  AES1 u_round0 (
+      .clk(clk),
+      .plaintext(plaintext),
+      .key(round[0]),
+      .cypher(stage[0])
+  );
+
+  // Round 1 → 8
+  genvar i;
+  generate
+    for (i = 1; i < 9; i++) begin : rounds
+      AES1 u_roundN (
+          .clk(clk),
+          .plaintext(stage[i-1]),
+          .key(round[i]),
+          .cypher(stage[i])
+      );
+    end
+  endgenerate
+
+  // Last round
+  AES_lastround u_last (
+      .clk(clk),
+      .plaintext(stage[8]),
+      .key(round[9]),
+      .cypher(cypher)
+  );
+
+endmodule

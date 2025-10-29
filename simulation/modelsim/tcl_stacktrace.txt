@@ -1,0 +1,23 @@
+Mon Jul 14 22:28:05 SE Asia Standard Time 2025
+Trace back: invalid command name ".main_pane.wave.interior.cs.body.pw.wf.grid.row0,wave.data"
+    while executing
+"$widget index @$x,$y"
+    (procedure "WaveABar::mouseMotionUpdate" line 19)
+    invoked from within
+"WaveABar::mouseMotionUpdate .main_pane.wave.interior.cs.body.pw.wf.grid.row0,wave.data .main_pane.wave.interior.cs.body.pw.wf 64 274"
+    ("after" script)
+  <2: ::tkerror {invalid command name ".main_pane.wave.interior.cs.body.pw.wf.grid.row0,wave.data"}
+  <1: ::bgerror {invalid command name ".main_pane.wave.interior.cs.body.pw.wf.grid.row0,wave.data"}
+Mon Oct 13 09:03:13 ICT 2025
+Trace back: can't read "vsimPriv(tr_status)": no such element in array
+    while executing
+"set tr_status $vsimPriv(tr_status)"
+    (procedure "Wave::1Down" line 19)
+    invoked from within
+"Wave::1Down $widget $x $y $shift $X $Y"
+    (procedure "Wave::SelectDown" line 6)
+    invoked from within
+"Wave::SelectDown   .main_pane.wave.interior.cs.body.pw.wf.grid.row0,wave.data 774 215 1045 399 0 "
+    (command bound to event)
+  <2:C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/tk8.5/bgerror.tcl:92: ::tkerror {can't read "vsimPriv(tr_status)": no such element in array}
+  <1:proc:38: ::tk::dialog::error::bgerror {can't read "vsimPriv(tr_status)": no such element in array}
