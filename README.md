@@ -2,7 +2,7 @@
 
 DE1-SoC | Quatus prime lite edition 24.1 | Modelsim Intel FPGA starter edition
 
-Đây là đồ án tốt nghiệp của nhóm tôi, hiện tại đây là bản đã chạy mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
+Đây là đồ án tốt nghiệp của nhóm tôi, bên dưới là hình ảnh các mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
 Các module chính trong toàn bộ dự án :
 
 <img width="295" height="148" alt="image" src="https://github.com/user-attachments/assets/194bbbfc-5c6b-44ac-8a53-05a53ccfe6be" />
@@ -38,3 +38,11 @@ Testbench module uart_tx:
 
 <img width="1912" height="1076" alt="image" src="https://github.com/user-attachments/assets/280dfe99-65d2-4f5b-9119-171ba16e332e" />
 
+Nhóm hai người bọn tôi chọn Winform làm giao diện cho giao tiếp truyền nhận plaintext và ciphertext, mặc dù nó không phải là một giao thức cho tốc độ nhanh nhưng nó là giao thức căn bản nhất. Việc thực hiện chi tiết một core UART và handshake được các module là nền tảng giúp hiểu các giao thức phức tạp khác.
+
+Dưới đây là hình ảnh giao diện winform hiển thị dữ liệu hình ảnh được resize về 64x64 và chuyển thành mảng byte sau đó gửi xuống FPGA qua UART. Sau đó winform nhận cipher, thực hiện ngược lại thao tác ta nhận lại plaintext ban đầu. Sau khi chuyển mảng byte thành ảnh thì có thể thấy hình ảnh trùng khớp với các hình ảnh ban đầu.
+
+<img width="1133" height="767" alt="image" src="https://github.com/user-attachments/assets/7d1a42c4-b43e-4bf3-93ce-b534d01365d7" />
+
+
+Tiếp tới nhóm 2 thành viên bọn tôi sẽ tiếp tục phát triển trên DE1-SoC cho phép mã hóa video stream.
