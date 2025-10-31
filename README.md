@@ -1,5 +1,8 @@
 # AES_UART_Interface_testsystem
-Đây là đồ án tốt nghiệp của nhóm tôi, hiện tại đây là bản đã chạy mô phỏng trên Modelsim cho ra các trường hợp lý tưởng nhưng chưa chạy trên phần cứng DE1-SOC. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
+
+DE1-SoC | Quatus prime lite 24.1 | Modelsim Intel FPGA starter edition
+
+Đây là đồ án tốt nghiệp của nhóm tôi, hiện tại đây là bản đã chạy mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
 Các module chính trong toàn bộ dự án :
 
 <img width="295" height="148" alt="image" src="https://github.com/user-attachments/assets/194bbbfc-5c6b-44ac-8a53-05a53ccfe6be" />
