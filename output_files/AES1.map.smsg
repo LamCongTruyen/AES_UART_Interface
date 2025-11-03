@@ -1,1 +1,3 @@
-Warning (10268): Verilog HDL information at aes_uart_rx_top.sv(77): always construct contains both blocking and non-blocking assignments File: C:/Users/lamco/Downloads/TC/TC/aes_uart_rx_top.sv Line: 77
+Info (10281): Verilog HDL Declaration information at AES_CTR_Pipelined_tb.sv(8): object "KEY" differs only in case from object "key" in the same scope File: C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv Line: 8
+Info (10281): Verilog HDL Declaration information at AES_CTR_Pipelined_tb.sv(9): object "NONCE" differs only in case from object "nonce" in the same scope File: C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv Line: 9
+Info (10281): Verilog HDL Declaration information at AES_CTR_Pipelined_tb.sv(7): object "PLAINTEXT" differs only in case from object "plaintext" in the same scope File: C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv Line: 7

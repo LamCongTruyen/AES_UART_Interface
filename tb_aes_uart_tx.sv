@@ -5,8 +5,8 @@ module tb_aes_uart_tx; //testbench của module : aes_uart_tx_top
     localparam CLK_FREQ  = 50000000;
     localparam BAUD_RATE = 115200;
     localparam CLK_PERIOD = 20; 
-	 localparam BAUD_DIV   = 434;          // 50M / 115200 ≈ 434
-    localparam TICK_DIV   = 27;           // 16x oversampling
+	 localparam BAUD_DIV   = 434;         
+    localparam TICK_DIV   = 27;        
     localparam BIT_TIME   = BAUD_DIV * TICK_DIV * CLK_PERIOD; // ~8680 ns
 	 
 	 
@@ -65,9 +65,6 @@ module tb_aes_uart_tx; //testbench của module : aes_uart_tx_top
         end
     endtask
 
-    // ========================================
-    // Task: Gửi toàn bộ 16 byte plaintext
-    // ========================================
     task send_plaintext();
         integer i;
         begin

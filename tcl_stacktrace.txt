@@ -78,3 +78,65 @@ Trace back: Bad sequence in.main_pane.memory.interior.cs.body.tree.lwchildsite.c
     ("after" script)
   <2:C:/intelFPGA_lite/modelsim_ase/win32aloem/tk8.6/bgerror.tcl:106: ::tkerror {Bad sequence in.main_pane.memory.interior.cs.body.tree.lwchildsite.clipper.canvas.sfchildsite.tree, aborting query. (2)}
   <1:C:/mtitcl/vsim/vsiminit.tc_:523: ::tk::dialog::error::bgerror {Bad sequence in.main_pane.memory.interior.cs.body.tree.lwchildsite.clipper.canvas.sfchildsite.tree, aborting query. (2)}
+Fri Oct 31 19:38:16 ICT 2025
+Trace back: can't read "itk_component(14)": no such element in array
+    while executing
+"$itk_component($n) isaccessobj"
+    (object "::.main_pane.watch.interior.cs.body.m" method "::vsimwidgets::Monitor::updateNodes" body line 7)
+    invoked from within
+"updateNodes"
+    (object "::.main_pane.watch.interior.cs.body.m" method "::vsimwidgets::Monitor::timeUpdate" body line 4)
+    invoked from within
+"timeUpdate"
+    (object "::.main_pane.watch.interior.cs.body.m" method "::vsimwidgets::Monitor::TimebarTimeChanged" body line 4)
+    invoked from within
+"::.main_pane.watch.interior.cs.body.m TimebarTimeChanged"
+    (in namespace inscope "::vsimwidgets::Monitor" script line 1)
+    invoked from within
+"namespace inscope ::vsimwidgets::Monitor {::.main_pane.watch.interior.cs.body.m TimebarTimeChanged}"
+    ("eval" body line 1)
+    invoked from within
+"eval [$timebar cget -timechangecb]"
+    (procedure "::vsimwidgets::TimeBar::TimeChangeHandler" body line 17)
+    invoked from within
+"::vsimwidgets::TimeBar::TimeChangeHandler ::vsimPriv acttime write"
+    (write trace on "::vsimPriv(acttime)")
+    invoked from within
+"set ::vsimPriv(acttime) $t"
+    (procedure "::TimeBarCmd::SetActiveTime" line 10)
+    invoked from within
+"::TimeBarCmd::SetActiveTime $t "--store""
+    (procedure "::vsimwidgets::TimeBar::SetActiveTime" body line 18)
+    invoked from within
+"SetActiveTime $_acttimeAfterDrag --postdrag"
+    (procedure "::vsimwidgets::TimeBar::WaveCursorDragChange" body line 23)
+    invoked from within
+"::vsimwidgets::TimeBar::WaveCursorDragChange vsimPriv dragging_cursor write"
+    (write trace on "vsimPriv(dragging_cursor)")
+    invoked from within
+"set vsimPriv(dragging_cursor) 0"
+    (procedure "Wave::1Up" line 76)
+    invoked from within
+"Wave::1Up $widget $x $y"
+    (procedure "Wave::SelectUp" line 4)
+    invoked from within
+"Wave::SelectUp	 .main_pane.wave.interior.cs.body.pw.wf.grid.row0,wave.data 992 176 2986 207 "
+    (command bound to event)
+  <2:C:/intelFPGA_lite/modelsim_ase/win32aloem/tk8.6/bgerror.tcl:106: ::tkerror {can't set "vsimPriv(dragging_cursor)": can't set "::vsimPriv(acttime)": can't read "itk_component(14)": no such element in array}
+  <1:C:/intelFPGA_lite/modelsim_ase/win32aloem/tk8.6/menu.tcl:-1: ::tk::dialog::error::bgerror {can't set "vsimPriv(dragging_cursor)": can't set "::vsimPriv(acttime)": can't read "itk_component(14)": no such element in array}
+Fri Oct 31 22:41:03 ICT 2025
+Trace back: Bad sequence in.main_pane.memory.interior.cs.body.tree.lwchildsite.clipper.canvas.sfchildsite.tree, aborting query. (2)
+    while executing
+"$itk_component(tree) insertquery end """
+    (object "::.main_pane.memory.interior.cs.body.tree" method "::vsimwidgets::Hierarchy::requery" body line 3)
+    invoked from within
+"requery"
+    (object "::.main_pane.memory.interior.cs.body.tree" method "::FlatMemlist::UpdateFlatMemList" body line 8)
+    invoked from within
+"$tree UpdateFlatMemList"
+    (procedure "Memview::delayedUpdateMemoryList" line 6)
+    invoked from within
+"Memview::delayedUpdateMemoryList"
+    ("after" script)
+  <2:C:/intelFPGA_lite/modelsim_ase/win32aloem/tk8.6/bgerror.tcl:106: ::tkerror {Bad sequence in.main_pane.memory.interior.cs.body.tree.lwchildsite.clipper.canvas.sfchildsite.tree, aborting query. (2)}
+  <1:eval:1: ::tk::dialog::error::bgerror {Bad sequence in.main_pane.memory.interior.cs.body.tree.lwchildsite.clipper.canvas.sfchildsite.tree, aborting query. (2)}

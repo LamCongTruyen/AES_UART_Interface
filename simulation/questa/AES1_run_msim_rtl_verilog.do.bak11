@@ -18,7 +18,7 @@ vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downl
 vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/uart_rx.sv}
 vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/aes_to_tx_top.sv}
 vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/uart_rx_top.sv}
-vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/aes_uart_top.sv}
+vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/aes_uart_to_tx_test.sv}
 
 vlog -sv -work work +incdir+C:/Users/lamco/Downloads/TC/TC {C:/Users/lamco/Downloads/TC/TC/AES_CTR_Pipelined_tb.sv}
 

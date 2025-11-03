@@ -1,0 +1,47 @@
+module uart_tx_top_test (
+    input  logic CLK_50MHZ,  // clock 50 MHz trên FPGA
+    input  logic KEY_RESET,  // nút reset
+    output logic TX_OUT      // xuất ra chân UART TX
+);
+
+    logic reset;
+    logic start;
+    logic done;
+
+    logic [127:0] ciphertext;
+
+    // Reset đồng bộ
+    assign reset = ~KEY_RESET;
+
+    // ---------------------------
+    // Dữ liệu AES giả lập (16 byte)
+    // ---------------------------
+    assign ciphertext = 128'h0f1571c947d9e8590cb7add6af7f6798;
+
+    // ---------------------------
+    // Phát 1 lần duy nhất
+    // ---------------------------
+    initial begin
+        start = 0;
+        #100_000;     // chờ vài chu kỳ clock sau reset (~2ms)
+        start = 1;
+        #20;
+        start = 0;
+    end
+
+    // ---------------------------
+    // Kết nối module UART TX
+    // ---------------------------
+    aes_to_tx_top #(
+        .CLK_FREQ(50_000_000),
+        .BAUD_RATE(115200)
+    ) dut (
+        .clk(CLK_50MHZ),
+        .reset(reset),
+        .start(start),
+        .ciphertext(ciphertext),
+        .tx(TX_OUT),
+        .done(done)
+    );
+
+endmodule

@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY aes_uart_top
+set_global_assignment -name TOP_LEVEL_ENTITY aes_uart_top_module
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:25:52  JULY 14, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
@@ -122,40 +122,7 @@ set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
 set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
 set_location_assignment PIN_AF14 -to clk
-set_location_assignment PIN_AA15 -to enable
-set_location_assignment PIN_AH28 -to hex0[6]
-set_location_assignment PIN_AG28 -to hex0[5]
-set_location_assignment PIN_AF28 -to hex0[4]
-set_location_assignment PIN_AG27 -to hex0[3]
-set_location_assignment PIN_AE28 -to hex0[2]
-set_location_assignment PIN_AE27 -to hex0[1]
-set_location_assignment PIN_AE26 -to hex0[0]
-set_location_assignment PIN_AD27 -to hex1[6]
-set_location_assignment PIN_AF30 -to hex1[5]
-set_location_assignment PIN_AF29 -to hex1[4]
-set_location_assignment PIN_AG30 -to hex1[3]
-set_location_assignment PIN_AH30 -to hex1[2]
-set_location_assignment PIN_AH29 -to hex1[1]
-set_location_assignment PIN_AJ29 -to hex1[0]
-set_location_assignment PIN_AC30 -to hex2[6]
-set_location_assignment PIN_AC29 -to hex2[5]
-set_location_assignment PIN_AD30 -to hex2[4]
-set_location_assignment PIN_AC28 -to hex2[3]
-set_location_assignment PIN_AD29 -to hex2[2]
-set_location_assignment PIN_AE29 -to hex2[1]
-set_location_assignment PIN_AB23 -to hex2[0]
-set_location_assignment PIN_AB22 -to hex3[6]
-set_location_assignment PIN_AB25 -to hex3[5]
-set_location_assignment PIN_AB28 -to hex3[4]
-set_location_assignment PIN_AC25 -to hex3[3]
-set_location_assignment PIN_AD25 -to hex3[2]
-set_location_assignment PIN_AC27 -to hex3[1]
-set_location_assignment PIN_AD26 -to hex3[0]
 set_location_assignment PIN_AA14 -to reset
-set_location_assignment PIN_AF10 -to s
-set_location_assignment PIN_AF9 -to sel[2]
-set_location_assignment PIN_AC12 -to sel[1]
-set_location_assignment PIN_AB12 -to sel[0]
 set_global_assignment -name SYSTEMVERILOG_FILE AES_pipeline.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_AES_pipeline.sv
 set_global_assignment -name EDA_TEST_BENCH_NAME tb_AES_pipeline -section_id eda_simulation
@@ -186,9 +153,7 @@ set_global_assignment -name EDA_TEST_BENCH_FILE AES_pipeline_Encryption_tb.sv -s
 set_global_assignment -name EDA_TEST_BENCH_FILE AES_CTR_Pipelined_tb.sv -section_id AES_CTR_Pipelined_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_AES_CTR_pipeline_Handshake.sv -section_id tb_AES_CTR_pipeline_Handshake
 set_global_assignment -name SYSTEMVERILOG_FILE uart_tx.sv
-set_global_assignment -name SYSTEMVERILOG_FILE uart_string_loopback.sv
 set_global_assignment -name SYSTEMVERILOG_FILE uart_rx.sv
-set_global_assignment -name SYSTEMVERILOG_FILE aes_uart_top_tb.sv
 set_global_assignment -name SYSTEMVERILOG_FILE aes_uart_rx_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_uart_rx.sv
 set_global_assignment -name SYSTEMVERILOG_FILE aes_uart_tx_top.sv
@@ -196,15 +161,25 @@ set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_uart_tx.sv
 set_global_assignment -name SYSTEMVERILOG_FILE aes_to_tx_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_to_tx.sv
 set_global_assignment -name SYSTEMVERILOG_FILE uart_rx_tb.sv
-set_global_assignment -name SYSTEMVERILOG_FILE uart_tx_sim.sv
-set_global_assignment -name SYSTEMVERILOG_FILE uart_aes_loopback.sv
-set_global_assignment -name SYSTEMVERILOG_FILE tb_uart_aes_loopback.sv
 set_global_assignment -name SYSTEMVERILOG_FILE uart_rx_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_uart_rx_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE aes_uart_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_uart_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE uart_tx_tb.sv
+set_location_assignment PIN_AH23 -to tx
+set_global_assignment -name SYSTEMVERILOG_FILE uart_tx_top_test.sv
+set_location_assignment PIN_AA15 -to key1
+set_location_assignment PIN_AK23 -to rx
+set_global_assignment -name SYSTEMVERILOG_FILE aes_uart_to_tx_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_uart_to_tx_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE aes_uart_top_module.sv
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to reset
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

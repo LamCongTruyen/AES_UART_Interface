@@ -4,26 +4,25 @@ module uart_rx #(
     parameter int TICK_DIV = 27    // số chu kỳ clock mỗi tick (~27)
                                    // tick_div = Ttick/Tclk (Ttick = Tbit/16sampling)
 )(
-    input  logic clk,              // Xung clock 50 MHz
-    input  logic rst_n,            // Reset active-low
-    input  logic rx,               // Đầu vào UART RX
-    output logic [7:0] data_out,   // Dữ liệu nhận được
-    output logic valid             // Báo hiệu dữ liệu hợp lệ
+    input  logic clk,              
+    input  logic rst_n,           
+    input  logic rx,               
+    output logic [7:0] data_out,  
+    output logic valid            
 );
-    // --- State encoding
+
     localparam int STATE_IDLE  = 2'd0;
     localparam int STATE_START = 2'd1;
     localparam int STATE_DATA  = 2'd2;
     localparam int STATE_STOP  = 2'd3;
-    // --- Internal registers
+
     logic [1:0] state;
     logic [12:0] clk_counter;
     logic [3:0]  tick_counter;
     logic [3:0]  bit_index;
     logic [7:0]  rx_shift;
-    logic        rx_sync1, rx_sync2; //Đồng bộ hóa tín hiệu rx
-    // --- Đồng bộ hóa tín hiệu RX
-	 //
+    logic        rx_sync1, rx_sync2;
+
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             rx_sync1 <= 1'b1;
@@ -33,9 +32,7 @@ module uart_rx #(
             rx_sync2 <= rx_sync1;
         end
     end
-//
 
-    // --- FSM nhận UART
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state        <= STATE_IDLE;
@@ -45,7 +42,7 @@ module uart_rx #(
             rx_shift     <= 8'd0;
             data_out     <= 8'd0;
             valid        <= 1'b0;
-				
+			
         end else begin
             case (state)
                 STATE_IDLE: begin
@@ -60,7 +57,7 @@ module uart_rx #(
                 end
 
                 STATE_START: begin
-                    if (clk_counter < TICK_DIV - 1) begin
+                    if (clk_counter < TICK_DIV - 1'b1) begin
                         clk_counter <= clk_counter + 1'b1;
                     end else begin
                         clk_counter  <= 13'd0;
@@ -76,7 +73,7 @@ module uart_rx #(
                 end
 
                 STATE_DATA: begin
-                    if (clk_counter < TICK_DIV - 1) begin
+                    if (clk_counter < TICK_DIV - 1'b1) begin
                         clk_counter <= clk_counter + 1'b1;
                     end else begin
                         clk_counter  <= 13'd0;
@@ -96,7 +93,7 @@ module uart_rx #(
                 end
 
                 STATE_STOP: begin
-                    if (clk_counter < TICK_DIV - 1) begin
+                    if (clk_counter < TICK_DIV - 1'b1) begin
                         clk_counter <= clk_counter + 1'b1;
                     end else begin
                         clk_counter  <= 13'd0;
@@ -112,7 +109,6 @@ module uart_rx #(
                     end
                 end
 
-                
             endcase
         end
     end

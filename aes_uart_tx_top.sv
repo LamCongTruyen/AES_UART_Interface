@@ -1,6 +1,6 @@
-
+//chương trình test các trạng thái dữ liệu không phải chương trình chính
 module aes_uart_tx_top #(
-    parameter CLK_FREQ  = 50000000,   // 50 MHz
+    parameter CLK_FREQ  = 50000000, 
     parameter BAUD_RATE = 115200
 )(
     input  logic         clk,

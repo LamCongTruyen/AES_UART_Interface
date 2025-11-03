@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("E:/BCTT/TC/output_files/") File("AES1.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("C:/backupdoantotnghiep/filesof_run_done_1/") File("AES1.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

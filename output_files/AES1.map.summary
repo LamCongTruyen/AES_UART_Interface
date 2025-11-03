@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Wed Oct 29 19:21:24 2025
+Analysis & Synthesis Status : Successful - Sat Nov  1 16:46:58 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : AES1
-Top-level Entity Name : aes_uart_top
+Top-level Entity Name : aes_uart_top_module
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 26378
-Total pins : 134
+Total registers : 34832
+Total pins : 5
 Total virtual pins : 0
 Total block memory bits : 1,548
 Total DSP Blocks : 0

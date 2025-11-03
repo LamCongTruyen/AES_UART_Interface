@@ -30,7 +30,7 @@ module AES_CTR_pipelined (
     // --------------------------------
     AES_pipeline_Encryption u_aes (
         .clk(clk),
-        .reset(reset),
+        .reset(~reset),
         .plaintext(counter),
         .key(key),
         .cypher(keystream)
@@ -39,8 +39,8 @@ module AES_CTR_pipelined (
     // --------------------------------
     // Counter logic
     // --------------------------------
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset)
+    always_ff @(posedge clk or negedge reset) begin
+        if (!reset)
             counter <= 128'h0;
 				//counter <= nonce;
         else if (enable)
@@ -51,8 +51,8 @@ module AES_CTR_pipelined (
     // --------------------------------
     // Dịch valid qua pipeline
     // --------------------------------
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset)
+    always_ff @(posedge clk or negedge reset) begin
+        if (!reset)
             valid_pipe <= '0;
         else begin
             valid_pipe[0] <= enable;
@@ -66,8 +66,8 @@ module AES_CTR_pipelined (
     // --------------------------------
     // Delay plaintext qua pipeline
     // --------------------------------
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
+    always_ff @(posedge clk or negedge reset) begin
+        if (!reset) begin
             for (int i = 0; i <= LATENCY; i++)
                 plaintext_delay[i] <= '0;
         end else begin

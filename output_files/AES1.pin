@@ -29,8 +29,8 @@
  -- VCCIO         : Dedicated power pin, which MUST be connected to VCC
  --                 of its bank.
  --                  Bank 3A:       2.5V
- --                  Bank 3B:       2.5V
- --                  Bank 4A:       2.5V
+ --                  Bank 3B:       3.3V
+ --                  Bank 4A:       3.3V
  --                  Bank 5A:       2.5V
  --                  Bank 5B:       2.5V
  --                  Bank 6B:       2.5V
@@ -118,14 +118,14 @@ VCCA_FPLL                    : AA8       : power  :                   : 2.5V    
 GND                          : AA9       : gnd    :                   :         :           :                
 VCCPD3A                      : AA10      : power  :                   : 2.5V    : 3A        :                
 GND                          : AA11      : gnd    :                   :         :           :                
-ciphertextout[78]            : AA12      : output : 2.5 V             :         : 3A        : N              
-ciphertextout[84]            : AA13      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[21]            : AA14      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[108]           : AA15      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[58]            : AA16      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AA17      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[67]            : AA18      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[126]           : AA19      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AA12      :        :                   :         : 3A        :                
+RESERVED_INPUT               : AA13      :        :                   :         : 3B        :                
+reset                        : AA14      : input  : 3.3-V LVTTL       :         : 3B        : Y              
+key1                         : AA15      : input  : 3.3-V LVTTL       :         : 3B        : Y              
+RESERVED_INPUT               : AA16      :        :                   :         : 4A        :                
+VCCIO4A                      : AA17      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AA18      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AA19      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AA20      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AA21      :        :                   :         : 4A        :                
 GND                          : AA22      : gnd    :                   :         :           :                
@@ -148,15 +148,15 @@ nCSO, DATA4                  : AB8       :        :                   :         
 TDO                          : AB9       : output :                   :         : 3A        :                
 VCCPGM                       : AB10      : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
 VCC_AUX                      : AB11      : power  :                   : 2.5V    :           :                
-ciphertextout[36]            : AB12      : output : 2.5 V             :         : 3A        : N              
-ciphertextout[52]            : AB13      : output : 2.5 V             :         : 3B        : N              
-VCCIO3B                      : AB14      : power  :                   : 2.5V    : 3B        :                
-ciphertextout[101]           : AB15      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AB12      :        :                   :         : 3A        :                
+RESERVED_INPUT               : AB13      :        :                   :         : 3B        :                
+VCCIO3B                      : AB14      : power  :                   : 3.3V    : 3B        :                
+RESERVED_INPUT               : AB15      :        :                   :         : 3B        :                
 VCC_AUX                      : AB16      : power  :                   : 2.5V    :           :                
-ciphertextout[68]            : AB17      : output : 2.5 V             :         : 4A        : N              
-VCCPD3B4A                    : AB18      : power  :                   : 2.5V    : 3B, 4A    :                
+RESERVED_INPUT               : AB17      :        :                   :         : 4A        :                
+VCCPD3B4A                    : AB18      : power  :                   : 3.3V    : 3B, 4A    :                
 GND                          : AB19      : gnd    :                   :         :           :                
-VCCPD3B4A                    : AB20      : power  :                   : 2.5V    : 3B, 4A    :                
+VCCPD3B4A                    : AB20      : power  :                   : 3.3V    : 3B, 4A    :                
 RESERVED_INPUT               : AB21      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AB22      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AB23      :        :                   :         : 5A        :                
@@ -178,16 +178,16 @@ GND                          : AC8       : gnd    :                   :         
 RESERVED_INPUT               : AC9       :        :                   :         : 3A        :                
 VCCPD3A                      : AC10      : power  :                   : 2.5V    : 3A        :                
 VCCIO3A                      : AC11      : power  :                   : 2.5V    : 3A        :                
-ciphertextout[120]           : AC12      : output : 2.5 V             :         : 3A        : N              
-VCCPD3B4A                    : AC13      : power  :                   : 2.5V    : 3B, 4A    :                
-ciphertextout[85]            : AC14      : output : 2.5 V             :         : 3B        : N              
-VCCPD3B4A                    : AC15      : power  :                   : 2.5V    : 3B, 4A    :                
+RESERVED_INPUT               : AC12      :        :                   :         : 3A        :                
+VCCPD3B4A                    : AC13      : power  :                   : 3.3V    : 3B, 4A    :                
+RESERVED_INPUT               : AC14      :        :                   :         : 3B        :                
+VCCPD3B4A                    : AC15      : power  :                   : 3.3V    : 3B, 4A    :                
 GND                          : AC16      : gnd    :                   :         :           :                
-VCCPD3B4A                    : AC17      : power  :                   : 2.5V    : 3B, 4A    :                
-aes_valid_out                : AC18      : output : 2.5 V             :         : 4A        : N              
-VCCPD3B4A                    : AC19      : power  :                   : 2.5V    : 3B, 4A    :                
-ciphertextout[12]            : AC20      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AC21      : power  :                   : 2.5V    : 4A        :                
+VCCPD3B4A                    : AC17      : power  :                   : 3.3V    : 3B, 4A    :                
+RESERVED_INPUT               : AC18      :        :                   :         : 4A        :                
+VCCPD3B4A                    : AC19      : power  :                   : 3.3V    : 3B, 4A    :                
+RESERVED_INPUT               : AC20      :        :                   :         : 4A        :                
+VCCIO4A                      : AC21      : power  :                   : 3.3V    : 4A        :                
 RESERVED_INPUT               : AC22      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AC23      :        :                   :         : 4A        :                
 VREFB5AN0                    : AC24      : power  :                   :         : 5A        :                
@@ -208,14 +208,14 @@ VCCIO3A                      : AD8       : power  :                   : 2.5V    
 RESERVED_INPUT               : AD9       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AD10      :        :                   :         : 3A        :                
 RESERVED_INPUT               : AD11      :        :                   :         : 3A        :                
-ciphertextout[17]            : AD12      : output : 2.5 V             :         : 3A        : N              
-VCCIO3B                      : AD13      : power  :                   : 2.5V    : 3B        :                
-ciphertextout[97]            : AD14      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AD12      :        :                   :         : 3A        :                
+VCCIO3B                      : AD13      : power  :                   : 3.3V    : 3B        :                
+RESERVED_INPUT               : AD14      :        :                   :         : 3B        :                
 DNU                          : AD15      :        :                   :         :           :                
-VCCPD3B4A                    : AD16      : power  :                   : 2.5V    : 3B, 4A    :                
-ciphertextout[65]            : AD17      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AD18      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[55]            : AD19      : output : 2.5 V             :         : 4A        : N              
+VCCPD3B4A                    : AD16      : power  :                   : 3.3V    : 3B, 4A    :                
+RESERVED_INPUT               : AD17      :        :                   :         : 4A        :                
+VCCIO4A                      : AD18      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AD19      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AD20      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AD21      :        :                   :         : 4A        :                
 VCC_AUX                      : AD22      : power  :                   : 2.5V    :           :                
@@ -237,21 +237,21 @@ RESERVED_INPUT               : AE7       :        :                   :         
 AS_DATA2, DATA2              : AE8       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AE9       :        :                   :         : 3A        :                
 GND                          : AE10      : gnd    :                   :         :           :                
-tx                           : AE11      : output : 2.5 V             :         : 3A        : N              
-rx                           : AE12      : input  : 2.5 V             :         : 3A        : N              
-ciphertextout[76]            : AE13      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[123]           : AE14      : output : 2.5 V             :         : 3B        : N              
-VCCIO3B                      : AE15      : power  :                   : 2.5V    : 3B        :                
-ciphertextout[29]            : AE16      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[3]             : AE17      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[54]            : AE18      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[74]            : AE19      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AE11      :        :                   :         : 3A        :                
+RESERVED_INPUT               : AE12      :        :                   :         : 3A        :                
+RESERVED_INPUT               : AE13      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AE14      :        :                   :         : 3B        :                
+VCCIO3B                      : AE15      : power  :                   : 3.3V    : 3B        :                
+RESERVED_INPUT               : AE16      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AE17      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AE18      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AE19      :        :                   :         : 4A        :                
 GND                          : AE20      : gnd    :                   :         :           :                
-VCCPD3B4A                    : AE21      : power  :                   : 2.5V    : 3B, 4A    :                
+VCCPD3B4A                    : AE21      : power  :                   : 3.3V    : 3B, 4A    :                
 RESERVED_INPUT               : AE22      :        :                   :         : 4A        :                
-ciphertextout[61]            : AE23      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AE23      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AE24      :        :                   :         : 4A        :                
-VCCIO4A                      : AE25      : power  :                   : 2.5V    : 4A        :                
+VCCIO4A                      : AE25      : power  :                   : 3.3V    : 4A        :                
 RESERVED_INPUT               : AE26      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AE27      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AE28      :        :                   :         : 5A        :                
@@ -260,148 +260,148 @@ VCCIO5B                      : AE30      : power  :                   : 2.5V    
 GND                          : AF1       : gnd    :                   :         :           :                
 GND                          : AF2       : gnd    :                   :         :           :                
 GND                          : AF3       : gnd    :                   :         :           :                
-ciphertextout[1]             : AF4       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[79]            : AF5       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[15]            : AF6       : output : 2.5 V             :         : 3A        : N              
+RESERVED_INPUT               : AF4       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AF5       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AF6       :        :                   :         : 3A        :                
 VCCIO3A                      : AF7       : power  :                   : 2.5V    : 3A        :                
-ciphertextout[8]             : AF8       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[37]            : AF9       : output : 2.5 V             :         : 3A        : N              
+RESERVED_INPUT               : AF8       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AF9       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AF10      :        :                   :         : 3A        :                
-ciphertextout[7]             : AF11      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AF11      :        :                   :         : 3B        :                
 GND                          : AF12      : gnd    :                   :         :           :                
-ciphertextout[87]            : AF13      : output : 2.5 V             :         : 3B        : N              
-clk                          : AF14      : input  : 2.5 V             :         : 3B        : Y              
-ciphertextout[110]           : AF15      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[53]            : AF16      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AF13      :        :                   :         : 3B        :                
+clk                          : AF14      : input  : 3.3-V LVTTL       :         : 3B        : Y              
+RESERVED_INPUT               : AF15      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AF16      :        :                   :         : 4A        :                
 GND                          : AF17      : gnd    :                   :         :           :                
-ciphertextout[94]            : AF18      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[83]            : AF19      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[4]             : AF20      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[64]            : AF21      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AF22      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[51]            : AF23      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[119]           : AF24      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AF18      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AF19      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AF20      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AF21      :        :                   :         : 4A        :                
+VCCIO4A                      : AF22      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AF23      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AF24      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AF25      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AF26      :        :                   :         : 4A        :                
 GND                          : AF27      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AF28      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AF29      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AF30      :        :                   :         : 5A        :                
-ciphertextout[6]             : AG1       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[81]            : AG2       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[95]            : AG3       : output : 2.5 V             :         : 3A        : N              
+RESERVED_INPUT               : AG1       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AG2       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AG3       :        :                   :         : 3A        :                
 VCCIO3A                      : AG4       : power  :                   : 2.5V    : 3A        :                
-ciphertextout[88]            : AG5       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[31]            : AG6       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[24]            : AG7       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[111]           : AG8       : output : 2.5 V             :         : 3A        : N              
+RESERVED_INPUT               : AG5       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AG6       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AG7       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AG8       :        :                   :         : 3A        :                
 GND                          : AG9       : gnd    :                   :         :           :                
-ciphertextout[100]           : AG10      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[40]            : AG11      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[43]            : AG12      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[92]            : AG13      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AG10      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AG11      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AG12      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AG13      :        :                   :         : 3B        :                
 GND                          : AG14      : gnd    :                   :         :           :                
-ciphertextout[2]             : AG15      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[30]            : AG16      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[69]            : AG17      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[48]            : AG18      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AG19      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[91]            : AG20      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[77]            : AG21      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[115]           : AG22      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[59]            : AG23      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AG15      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AG16      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AG17      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AG18      :        :                   :         : 4A        :                
+VCCIO4A                      : AG19      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AG20      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AG21      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AG22      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AG23      :        :                   :         : 4A        :                
 GND                          : AG24      : gnd    :                   :         :           :                
-ciphertextout[20]            : AG25      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AG25      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AG26      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AG27      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AG28      :        :                   :         : 5A        :                
 VCCIO5A                      : AG29      : power  :                   : 2.5V    : 5A        :                
 RESERVED_INPUT               : AG30      :        :                   :         : 5A        :                
 GND                          : AH1       : gnd    :                   :         :           :                
-ciphertextout[102]           : AH2       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[39]            : AH3       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[18]            : AH4       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[25]            : AH5       : output : 2.5 V             :         : 3A        : N              
+RESERVED_INPUT               : AH2       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AH3       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AH4       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AH5       :        :                   :         : 3A        :                
 GND                          : AH6       : gnd    :                   :         :           :                
-ciphertextout[73]            : AH7       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[89]            : AH8       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[33]            : AH9       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[5]             : AH10      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AH7       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AH8       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AH9       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AH10      :        :                   :         : 3B        :                
 GND                          : AH11      : gnd    :                   :         :           :                
-ciphertextout[114]           : AH12      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[16]            : AH13      : output : 2.5 V             :         : 3B        : N              
-TX_valid_out                 : AH14      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[96]            : AH15      : output : 2.5 V             :         : 3B        : N              
-VCCIO4A                      : AH16      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[57]            : AH17      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[42]            : AH18      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[86]            : AH19      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[106]           : AH20      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AH12      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AH13      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AH14      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AH15      :        :                   :         : 3B        :                
+VCCIO4A                      : AH16      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AH17      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AH18      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AH19      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AH20      :        :                   :         : 4A        :                
 GND                          : AH21      : gnd    :                   :         :           :                
-ciphertextout[49]            : AH22      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[70]            : AH23      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[56]            : AH24      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[124]           : AH25      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AH26      : power  :                   : 2.5V    : 4A        :                
+RESERVED_INPUT               : AH22      :        :                   :         : 4A        :                
+tx                           : AH23      : output : 3.3-V LVTTL       :         : 4A        : Y              
+RESERVED_INPUT               : AH24      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AH25      :        :                   :         : 4A        :                
+VCCIO4A                      : AH26      : power  :                   : 3.3V    : 4A        :                
 RESERVED_INPUT               : AH27      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AH28      :        :                   :         : 5A        :                
 RESERVED_INPUT               : AH29      :        :                   :         : 5A        :                
-ciphertextout[71]            : AH30      : output : 2.5 V             :         : 5A        : N              
-ciphertextout[72]            : AJ1       : output : 2.5 V             :         : 3A        : N              
-ciphertextout[23]            : AJ2       : output : 2.5 V             :         : 3A        : N              
+RESERVED_INPUT               : AH30      :        :                   :         : 5A        :                
+RESERVED_INPUT               : AJ1       :        :                   :         : 3A        :                
+RESERVED_INPUT               : AJ2       :        :                   :         : 3A        :                
 GND                          : AJ3       : gnd    :                   :         :           :                
-ciphertextout[105]           : AJ4       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[47]            : AJ5       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[28]            : AJ6       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[113]           : AJ7       : output : 2.5 V             :         : 3B        : N              
-VCCIO3B                      : AJ8       : power  :                   : 2.5V    : 3B        :                
-ciphertextout[22]            : AJ9       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[13]            : AJ10      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[11]            : AJ11      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[32]            : AJ12      : output : 2.5 V             :         : 3B        : N              
-VCCIO3B                      : AJ13      : power  :                   : 2.5V    : 3B        :                
-ciphertextout[93]            : AJ14      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AJ4       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AJ5       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AJ6       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AJ7       :        :                   :         : 3B        :                
+VCCIO3B                      : AJ8       : power  :                   : 3.3V    : 3B        :                
+RESERVED_INPUT               : AJ9       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AJ10      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AJ11      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AJ12      :        :                   :         : 3B        :                
+VCCIO3B                      : AJ13      : power  :                   : 3.3V    : 3B        :                
+RESERVED_INPUT               : AJ14      :        :                   :         : 3B        :                
 VREFB3BN0                    : AJ15      : power  :                   :         : 3B        :                
-ciphertextout[44]            : AJ16      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[121]           : AJ17      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AJ16      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AJ17      :        :                   :         : 4A        :                
 GND                          : AJ18      : gnd    :                   :         :           :                
-ciphertextout[104]           : AJ19      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[19]            : AJ20      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[27]            : AJ21      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[45]            : AJ22      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AJ23      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[26]            : AJ24      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[0]             : AJ25      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[50]            : AJ26      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AJ19      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AJ20      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AJ21      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AJ22      :        :                   :         : 4A        :                
+VCCIO4A                      : AJ23      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AJ24      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AJ25      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AJ26      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AJ27      :        :                   :         : 4A        :                
 GND                          : AJ28      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AJ29      :        :                   :         : 5A        :                
 GND                          : AJ30      : gnd    :                   :         :           :                
-ciphertextout[103]           : AK2       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[127]           : AK3       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[46]            : AK4       : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AK2       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK3       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK4       :        :                   :         : 3B        :                
 GND                          : AK5       : gnd    :                   :         :           :                
-ciphertextout[34]            : AK6       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[80]            : AK7       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[98]            : AK8       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[75]            : AK9       : output : 2.5 V             :         : 3B        : N              
-VCCIO3B                      : AK10      : power  :                   : 2.5V    : 3B        :                
-ciphertextout[10]            : AK11      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[14]            : AK12      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[116]           : AK13      : output : 2.5 V             :         : 3B        : N              
-ciphertextout[122]           : AK14      : output : 2.5 V             :         : 3B        : N              
+RESERVED_INPUT               : AK6       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK7       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK8       :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK9       :        :                   :         : 3B        :                
+VCCIO3B                      : AK10      : power  :                   : 3.3V    : 3B        :                
+RESERVED_INPUT               : AK11      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK12      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK13      :        :                   :         : 3B        :                
+RESERVED_INPUT               : AK14      :        :                   :         : 3B        :                
 GND                          : AK15      : gnd    :                   :         :           :                
-ciphertextout[112]           : AK16      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AK16      :        :                   :         : 4A        :                
 VREFB4AN0                    : AK17      : power  :                   :         : 4A        :                
-ciphertextout[107]           : AK18      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[82]            : AK19      : output : 2.5 V             :         : 4A        : N              
-VCCIO4A                      : AK20      : power  :                   : 2.5V    : 4A        :                
-ciphertextout[35]            : AK21      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[99]            : AK22      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[66]            : AK23      : output : 2.5 V             :         : 4A        : N              
-ciphertextout[118]           : AK24      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AK18      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AK19      :        :                   :         : 4A        :                
+VCCIO4A                      : AK20      : power  :                   : 3.3V    : 4A        :                
+RESERVED_INPUT               : AK21      :        :                   :         : 4A        :                
+RESERVED_INPUT               : AK22      :        :                   :         : 4A        :                
+rx                           : AK23      : input  : 3.3-V LVTTL       :         : 4A        : Y              
+RESERVED_INPUT               : AK24      :        :                   :         : 4A        :                
 GND                          : AK25      : gnd    :                   :         :           :                
-ciphertextout[60]            : AK26      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : AK26      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AK27      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AK28      :        :                   :         : 4A        :                
 RESERVED_INPUT               : AK29      :        :                   :         : 4A        :                
@@ -900,8 +900,8 @@ GND                          : V12       : gnd    :                   :         
 VCC                          : V13       : power  :                   : 1.1V    :           :                
 GND                          : V14       : gnd    :                   :         :           :                
 VCC                          : V15       : power  :                   : 1.1V    :           :                
-ciphertextout[62]            : V16       : output : 2.5 V             :         : 4A        : N              
-ciphertextout[117]           : V17       : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : V16       :        :                   :         : 4A        :                
+RESERVED_INPUT               : V17       :        :                   :         : 4A        :                
 RESERVED_INPUT               : V18       :        :                   :         : 4A        :                
 GND                          : V19       : gnd    :                   :         :           :                
 RESERVED_INPUT               : V20       :        :                   :         : 6B        :                
@@ -929,12 +929,12 @@ GND                          : W11       : gnd    :                   :         
 VCC                          : W12       : power  :                   : 1.1V    :           :                
 GND                          : W13       : gnd    :                   :         :           :                
 VCC                          : W14       : power  :                   : 1.1V    :           :                
-ciphertextout[9]             : W15       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[41]            : W16       : output : 2.5 V             :         : 4A        : N              
-ciphertextout[109]           : W17       : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : W15       :        :                   :         : 3B        :                
+RESERVED_INPUT               : W16       :        :                   :         : 4A        :                
+RESERVED_INPUT               : W17       :        :                   :         : 4A        :                
 GND                          : W18       : gnd    :                   :         :           :                
 RESERVED_INPUT               : W19       :        :                   :         : 4A        :                
-ciphertextout[125]           : W20       : output : 2.5 V             :         : 5A        : N              
+RESERVED_INPUT               : W20       :        :                   :         : 5A        :                
 RESERVED_INPUT               : W21       :        :                   :         : 5A        :                
 RESERVED_INPUT               : W22       :        :                   :         : 5A        :                
 VCCIO5A                      : W23       : power  :                   : 2.5V    : 5A        :                
@@ -960,9 +960,9 @@ GND                          : Y12       : gnd    :                   :         
 VCC                          : Y13       : power  :                   : 1.1V    :           :                
 GND                          : Y14       : gnd    :                   :         :           :                
 GND                          : Y15       : gnd    :                   :         :           :                
-ciphertextout[38]            : Y16       : output : 2.5 V             :         : 3B        : N              
-ciphertextout[90]            : Y17       : output : 2.5 V             :         : 4A        : N              
-ciphertextout[63]            : Y18       : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT               : Y16       :        :                   :         : 3B        :                
+RESERVED_INPUT               : Y17       :        :                   :         : 4A        :                
+RESERVED_INPUT               : Y18       :        :                   :         : 4A        :                
 RESERVED_INPUT               : Y19       :        :                   :         : 4A        :                
 GND                          : Y20       : gnd    :                   :         :           :                
 RESERVED_INPUT               : Y21       :        :                   :         : 5A        :                
@@ -971,7 +971,7 @@ RESERVED_INPUT               : Y23       :        :                   :         
 RESERVED_INPUT               : Y24       :        :                   :         : 5A        :                
 GND                          : Y25       : gnd    :                   :         :           :                
 RESERVED_INPUT               : Y26       :        :                   :         : 5B        :                
-rst_n                        : Y27       : input  : 2.5 V             :         : 5B        : N              
+RESERVED_INPUT               : Y27       :        :                   :         : 5B        :                
 RESERVED_INPUT               : Y28       :        :                   :         : 6B        :                
 RESERVED_INPUT               : Y29       :        :                   :         : 6B        :                
 GND                          : Y30       : gnd    :                   :         :           :                

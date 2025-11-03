@@ -1,0 +1,76 @@
+`timescale 1ns/1ps
+
+module tb_aes_uart_to_tx_test;
+
+    // ==============================
+    // Tín hiệu testbench
+    // ==============================
+    logic clk;
+    logic reset;
+    logic key1;
+    wire  tx;
+
+    // ==============================
+    // Tạo xung clock 50 MHz (20ns)
+    // ==============================
+    initial begin
+        clk = 0;
+        forever #10 clk = ~clk;
+    end
+
+    // ==============================
+    // Kết nối DUT (Design Under Test)
+    // ==============================
+    aes_uart_to_tx_test DUT (
+        .clk(clk),
+        .reset(reset),
+        .key1(key1),
+        .tx(tx)
+    );
+
+    // ==============================
+    // Tín hiệu khởi tạo
+    // ==============================
+    initial begin
+        $display("=== BẮT ĐẦU MÔ PHỎNG AES_UART_TO_TX ===");
+        reset = 1'b0;
+        key1  = 1'b1;
+        #100;
+        reset = 1'b1;    // Thả reset
+        #100;
+
+        // ==============================
+        // Lặp 5 lần: Nhấn nút key1 để gửi
+        // ==============================
+        for (int i = 0; i < 5; i++) begin
+            $display("\n[TB] --- Chu kỳ %0d ---", i);
+            key1 = 1'b0;   // Nhấn nút (active low)
+            #40;           // giữ 40ns
+            key1 = 1'b1;   // Nhả nút
+
+            // Chờ AES hoàn tất và UART truyền xong
+            wait (DUT.aes_done == 1);
+            #10;
+            $display("[TB] AES hoàn tất! Ciphertext = %h", DUT.aes_ciphertext);
+
+            wait (DUT.tx_done == 1);
+            #10;
+            $display("[TB] UART truyền xong frame %0d", i);
+
+            #500; // Nghỉ 500ns giữa các lần nhấn
+        end
+
+        $display("\n=== KẾT THÚC MÔ PHỎNG ===");
+        #200;
+        $finish;
+    end
+
+    // ==============================
+    // Theo dõi một số tín hiệu chính
+    // ==============================
+    initial begin
+        $monitor("[%0t] state=%0d | aes_done=%b | tx_done=%b | tx=%b", 
+                  $time, DUT.state, DUT.aes_done, DUT.tx_done, tx);
+    end
+
+endmodule

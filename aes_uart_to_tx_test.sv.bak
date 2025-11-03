@@ -1,0 +1,96 @@
+module aes_uart_to_tx_test (
+    input  logic        clk,
+    input  logic        rst_n,
+    output logic         tx
+
+);
+	 localparam [127:0] CIPHERTEXT = 128'h22222222222222222222222222222222; 
+	 localparam [127:0] key= 128'h0f1571c947d9e8590cb7add6af7f6798;
+	 localparam [127:0] nonce = 128'h00000000000000000000000000000001;
+	 
+	 logic [127:0] data_out_128;
+    logic         data_valid;
+    logic         uart_rx_enable;
+    logic [127:0] aes_ciphertext;
+    logic         aes_done;
+    logic         aes_enable;
+    logic         uart_tx_start;
+    logic         tx_done;
+	 logic start_signal;
+    logic done_signal;
+	 logic key1_sync_0, key1_sync_1, key1_prev;
+    logic reset_sync_0, reset_sync_1;
+	 
+
+    aes_to_tx_top u_uart_tx (
+        .clk(clk),
+        .reset(reset_n),
+        .start(uart_tx_start),
+        .ciphertext(aes_ciphertext),
+        .tx(tx),
+        .done(tx_done)
+    );
+
+    AES_CTR_pipelined u_aes_ctr (
+        .clk(clk),
+        .reset(reset_n),
+        .enable(aes_enable),
+        .key(key),
+        .nonce(nonce),
+        .plaintext(data_out_128),
+        .ciphertext(aes_ciphertext),
+        .valid_out(aes_done)
+    );
+
+    //assign aes_valid_out = aes_done;
+    //assign ciphertextout = aes_ciphertext;
+    typedef enum logic [1:0] {
+        IDLE,
+        AES_BUSY
+    } state_t;
+
+    state_t state, next_state;
+
+	 always_ff @(posedge clk) begin
+        reset_sync_0 <= reset;
+        reset_sync_1 <= reset_sync_0;
+		  
+        key1_sync_0 <= key1;
+        key1_sync_1 <= key1_sync_0;
+        key1_prev   <= key1_sync_1;
+    end
+	 assign start_signal = (key1_prev == 1 && key1_sync_1 == 0);
+	 logic reset_n;
+    assign reset_n = reset_sync_1;
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            state <= IDLE;
+        else
+            state <= next_state;
+    end
+
+    always_comb begin
+        next_state     = state;
+        uart_rx_enable = 1'b0;
+        aes_enable     = 1'b0;
+        uart_tx_start  = 1'b0;
+
+        case (state)
+            IDLE: begin
+                uart_rx_enable = 1'b1;
+                if (data_valid) begin
+                    aes_enable    = 1'b1; 
+                    next_state    = AES_BUSY;
+                end
+            end
+            AES_BUSY: begin
+					 aes_enable    = 1'b0;
+                if (aes_done) begin
+                    uart_tx_start = 1'b1; 
+                    next_state    = IDLE;
+                end
+            end
+        endcase
+    end
+
+endmodule

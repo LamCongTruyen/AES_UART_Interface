@@ -1,6 +1,6 @@
 module uart_tx #(
-    parameter int BAUD_DIV = 434, // BAUD_DIV = 50M / 115200 ≈ 434
-    parameter int TICK_DIV = 27   // Số chu kỳ clock mỗi tick (~27)
+    parameter int BAUD_DIV = 434, // BAUD_DIV = 50Mhz / 115200 ≈ 434
+    parameter int TICK_DIV = 27   // Số chu kỳ clock mỗi tick
 )(
     input  logic       clk,
     input  logic       rst_n,
@@ -10,20 +10,17 @@ module uart_tx #(
     output logic       busy
 );
 
-    // --- State encoding
     localparam int STATE_IDLE  = 2'd0;
     localparam int STATE_START = 2'd1;
     localparam int STATE_DATA  = 2'd2;
     localparam int STATE_STOP  = 2'd3;
-
-    // --- Internal registers
+	 
     logic [1:0]  state;
     logic [12:0] clk_counter;
     logic [3:0]  tick_counter;
     logic [3:0]  bit_index;
     logic [7:0]  tx_shift;
 	
-    // --- FSM truyền UART
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state        <= STATE_IDLE;
@@ -41,7 +38,6 @@ module uart_tx #(
                     tick_counter <= 4'd0;
                     bit_index    <= 4'd0;
                     busy         <= 1'b0;
-
                     if (trigger) begin
                         busy      <= 1'b1;
                         tx_shift  <= data_in;
@@ -51,7 +47,7 @@ module uart_tx #(
 
                 STATE_START: begin
                     tx <= 1'b0;
-                    if (clk_counter < TICK_DIV - 1) begin
+                    if (clk_counter < TICK_DIV - 1'b1) begin
                         clk_counter <= clk_counter + 1'b1;
                     end else begin
                         clk_counter <= 1'b0;
@@ -66,12 +62,12 @@ module uart_tx #(
 
                 STATE_DATA: begin
                     tx <= tx_shift[0];
-                    if (clk_counter < TICK_DIV - 1) begin
+                    if (clk_counter < TICK_DIV - 1'b1) begin
                         clk_counter <= clk_counter + 1'b1;
                     end else begin
                         clk_counter <= 4'd0;
                         if (tick_counter < 4'd15) begin
-                            tick_counter <= tick_counter + 1;
+                            tick_counter <= tick_counter + 1'b1;
                         end else begin
                             tick_counter <= 4'd0;
                             tx_shift <= {1'b0, tx_shift[7:1]};
