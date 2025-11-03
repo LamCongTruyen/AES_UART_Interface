@@ -44,5 +44,6 @@ Dưới đây là hình ảnh giao diện winform hiển thị dữ liệu hình
 
 <img width="1133" height="767" alt="image" src="https://github.com/user-attachments/assets/7d1a42c4-b43e-4bf3-93ce-b534d01365d7" />
 
+Sau một vài ngày kiểm tra chức năng thì với các chức năng cơ bản như trên thì hệ thống hoạt động chính xác, tuy nhiên với hình ảnh chất lượng cao thì việc truyền nhận có thể bị ngẽn. Tôi sẽ sử dụng thêm HPS trên DE1-SOC cho dự án này để hỗ trợ cải thiện tốc độ và dung lượng hình ảnh lớn hơn.
 
 Tiếp tới nhóm 2 thành viên bọn tôi sẽ tiếp tục phát triển trên DE1-SoC cho phép mã hóa video stream.
