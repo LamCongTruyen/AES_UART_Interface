@@ -2,7 +2,8 @@
 
 DE1-SoC | Quatus prime lite edition 24.1 | Modelsim Intel FPGA starter edition
 
-Đây là đồ án tốt nghiệp của nhóm tôi, bên dưới là hình ảnh các mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
+Đây là dự án dùng giao thức UART để truyền nhận dữ liệu cho module AES_CTR_128, bên dưới là hình ảnh các mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
+
 Các module chính trong toàn bộ dự án :
 
 <img width="295" height="148" alt="image" src="https://github.com/user-attachments/assets/194bbbfc-5c6b-44ac-8a53-05a53ccfe6be" />
@@ -38,7 +39,7 @@ Testbench module uart_tx:
 
 <img width="1912" height="1076" alt="image" src="https://github.com/user-attachments/assets/280dfe99-65d2-4f5b-9119-171ba16e332e" />
 
-Nhóm hai người bọn tôi chọn Winform làm giao diện cho giao tiếp truyền nhận plaintext và ciphertext, mặc dù nó không phải là một giao thức cho tốc độ nhanh nhưng nó là giao thức căn bản nhất. Việc thực hiện chi tiết một core UART và handshake được các module là nền tảng giúp hiểu các giao thức phức tạp khác.
+Nhóm hai người bọn tôi chọn Winform làm giao diện thao tác truyền nhận plaintext và ciphertext bằng UART, mặc dù nó không phải là một giao thức cho tốc độ nhanh nhưng nó là giao thức căn bản nhất. Việc thực hiện chi tiết một core UART và handshake được các module là nền tảng giúp hiểu các giao thức phức tạp khác.
 
 Dưới đây là hình ảnh giao diện winform hiển thị dữ liệu hình ảnh được resize về 64x64 và chuyển thành mảng byte sau đó gửi xuống FPGA qua UART. Sau đó winform nhận cipher, thực hiện ngược lại thao tác ta nhận lại plaintext ban đầu. Sau khi chuyển mảng byte thành ảnh thì có thể thấy hình ảnh trùng khớp với các hình ảnh ban đầu.
 
@@ -46,6 +47,6 @@ Dưới đây là hình ảnh giao diện winform hiển thị dữ liệu hình
 
 Sau một vài ngày kiểm tra chức năng thì với các chức năng cơ bản như trên thì hệ thống hoạt động chính xác, tuy nhiên với hình ảnh chất lượng cao thì việc truyền nhận có thể bị ngẽn. Tôi sẽ sử dụng thêm HPS trên DE1-SOC cho dự án này để hỗ trợ cải thiện tốc độ và dung lượng hình ảnh lớn hơn.
 
-Tiếp tới nhóm 2 thành viên bọn tôi sẽ tiếp tục phát triển trên DE1-SoC cho phép mã hóa video stream.
+Tiếp tới nhóm 2 thành viên bọn tôi sẽ tiếp tục phát triển trên DE1-SoC cho phép tăng tốc độ truyền nhận dữ liệu, tăng tốc độ mã hóa.
 
 Những dòng cuối này thì tôi muốn khẳng định rằng là việc dùng uart (1 giao thức rất cơ bản) cho việc truyền dữ liệu ảnh như này nó rất là nhiều vấn đề về tính thực tế, hiệu suất cũng như là đảm bảo tín hiệu với dữ liệu lớn. Điều tôi muốn nhấn mạnh với dự án này ở thời điểm hiện tại (khi chưa tích hợp với HPS trên DE1-SoC) nó sẽ mang tính học thuật cao hơn. Phần lớn thời gian tôi dành vào việc hiểu frame data của UART dựa vào đó để viết Statemachine và việc chiếm nhiều thời gian nhất đó là xác minh từng module trước khi kết nối chúng lại với nhau. Việc chạy testbench từng module nhỏ cho ra dạng sóng ưng ý nhưng khi kết nối chúng lại, đôi khi việc bắt tay không tốt nên thực tế trên phần cứng nó hoạt động không chính xác như trên testbench và tôi mất khá nhiều thời gian chỉnh sửa FSM để UART có thể truyền ciphertext và nhận plaintext một cách chính xác nhất.
