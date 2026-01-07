@@ -2,7 +2,7 @@
 
 DE1-SoC | Quatus prime lite edition 24.1 | Modelsim Intel FPGA starter edition
 
-Đây là dự án dùng giao thức UART để truyền nhận dữ liệu cho module AES_CTR_128, bên dưới là hình ảnh các mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Mục đích chính là dùng UART để có thể debug và hỗ trợ lúc bảo vệ đồ án, đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi sử dụng thêm HPS.
+Đây là dự án dùng giao thức UART để truyền nhận dữ liệu cho module AES_CTR_128, bên dưới là hình ảnh các mô phỏng trên Modelsim cho ra các trường hợp lý tưởng. Đây cũng là một bản backup cho các thay đổi lớn sắp tới khi tôi đang suy nghĩ thay thế UART bằng cách sử dụng Ethernet trên DE1.
 
 Các module chính trong toàn bộ dự án :
 
